@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function Login () {
+function Signin () {
     return (
         <>
             <div class="w-96 backdrop-blur-lg bg-opacity-80 rounded-lg shadow-lg p-5 bg-gray-900 text-white">
@@ -64,4 +64,4 @@ function Login () {
 )
 }
 
-export default Login;
+export default Signin;
