@@ -13,7 +13,7 @@ const typeDefs= `
       games: [Game!]
       }
 
-    type likedGames{
+    type LikedGames{
       _id: ID!
       games: [Game!]
       }  
