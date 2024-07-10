@@ -1,22 +1,55 @@
 import React from 'react';
+import { useState } from 'react';
+import auth from '../utils/auth';   
+import { useMutation } from '@apollo/client'; 
+import { LOGIN_USER, SIGNUP_USER } from '../utils/mutations';
 
 
-function Signin () {
+function Signup () {
+    const [formState, setFormState] = useState({ username:'', email: '', password: '' });
+    // const [login, { error }] = useMutation(LOGIN_USER);
+    const [signup] = useMutation(addUser);
+    const [validate] = useState(false);
+    
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const { data } = await signup({
+                variables: { ...formState }
+            });
+            auth.signup(data.signup.token);
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormState({
+            ...formState,
+            [name]: value
+        });
+    }
+
+    setFormState({ username: '', email: '', password: '' });
+
     return (
         <>
         <div></div>
             <div class="w-96 backdrop-blur-lg bg-opacity-80 rounded-lg shadow-lg p-5 bg-gray-900 text-white">
             <h2 class="text-2xl font-bold pb-5">Login</h2>
-            <form>
+            <form onSubmit={handleFormSubmit}>
                 <div class="mb-4">
                 <label for="name" class="block mb-2 text-sm font-medium">Your name</label>
                 <input
                     type="text"
-                    id="name"
+                    id="userName"
                     class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
-                    placeholder="Andrew Jackson"
+                    placeholder="jsmith1"
                     required
                     value=""
+                    onChange={handleChange}
+
                 />
                 </div>
                 <div class="mb-4">
@@ -28,6 +61,8 @@ function Signin () {
                     placeholder="andrew@mail.com"
                     required
                     value=""
+                    onChange={handleChange}
+
                 />
                 </div>
                 <div class="mb-4">
@@ -39,6 +74,8 @@ function Signin () {
                     placeholder="*********"
                     required
                     value=""
+                    onChange={handleChange}
+
                 />
                 </div>
                 <div>
