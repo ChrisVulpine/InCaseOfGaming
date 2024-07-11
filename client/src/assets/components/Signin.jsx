@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import { LOGIN_USER, ADD_USER } from '../../utils/mutations';
 
 
-function SignInSignUp() {
+function LogInSignUp() {
     const [formState, setFormState] = useState({ username: '', email: '', password: '' });
 
 //Just FYI(Previous code was for a single button. The new code is for two separate buttons - a sign up and a login button.)
@@ -15,18 +15,42 @@ function SignInSignUp() {
         setFormState(prevState => ({ ...prevState, [name]: value }));
        };
 
+    //checks form input
+    const validateForm = () => {
+        const { username, email, password } = formState;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!username.trim() || !email.trim() || !password.trim()) {
+            alert('All fields are required.');
+            return false;
+        }
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address.');
+            return false;
+        }
+        if (password.length < 8) {
+            alert('Password must be at least 8 characters long.');
+            return false;
+        }
+        return true; // Form is valid
+    };
+
     //handles login submission
     const handleLogin = (event) => {
         event.preventDefault();
-        // Code to handle login, e.g., sending formState to a server for authentication
+        if (!validateForm()) return; //if validateForm test fails
+        // insert code to handle login, e.g., sending formState to a server for authentication
         console.log('Logging in with:', formState);
+        //insert login logic
     };
 
     //handles signup submission
     const handleSignup = (event) => {
         event.preventDefault();
-        // Code to handle signup, e.g., sending formState to a server for account creation
+        if (!validateForm()) return;  //if validateForm test fails
+        // insert code to handle signup, e.g., sending formState to a server for account creation
         console.log('Signing up with:', formState);
+        //insert signup logic
+
     };
 
 
@@ -42,6 +66,7 @@ function SignInSignUp() {
                                 name="username"
                                 className="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
                                 placeholder="jsmith1"
+                                required
                                 value={formState.username}
                                 onChange={handleChange}
                             />
@@ -95,7 +120,7 @@ function SignInSignUp() {
     );
 }
 
-export default SignInSignUp;
+export default LogInSignUp;
 
 
 // import React from 'react';
