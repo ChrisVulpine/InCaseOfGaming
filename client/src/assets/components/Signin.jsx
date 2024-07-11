@@ -6,38 +6,35 @@ import { LOGIN_USER, ADD_USER } from '../../utils/mutations';
 
 function SignInSignUp() {
     const [formState, setFormState] = useState({ username: '', email: '', password: '' });
-    const [isSignUp, setIsSignUp] = useState(false); // State to toggle between sign in and sign up
-    const [Login] = useMutation(LOGIN_USER);
-    const [signup] = useMutation(ADD_USER);
 
-    const handleFormSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            const mutation = isSignUp ? signup : login;
-            const { data } = await mutation({
-                variables: { ...formState }
-            });
-            // Assuming you have a function to handle login after receiving the token
-            auth.login(data.token);
-        } catch (e) {
-            console.error(e);
-        }
-    };
+//Just FYI(Previous code was for a single button. The new code is for two separate buttons - a sign up and a login button.)
 
+    //updates form state after user input
     const handleChange = (event) => {
         const { name, value } = event.target;
-        setFormState({
-            ...formState,
-            [name]: value
-        });
+        setFormState(prevState => ({ ...prevState, [name]: value }));
+       };
+
+    //handles login submission
+    const handleLogin = (event) => {
+        event.preventDefault();
+        // Code to handle login, e.g., sending formState to a server for authentication
+        console.log('Logging in with:', formState);
     };
+
+    //handles signup submission
+    const handleSignup = (event) => {
+        event.preventDefault();
+        // Code to handle signup, e.g., sending formState to a server for account creation
+        console.log('Signing up with:', formState);
+    };
+
 
     return (
         <>
             <div className="w-96 backdrop-blur-lg bg-opacity-80 rounded-lg shadow-lg p-5 bg-gray-900 text-white">
-                <h2 className="text-2xl font-bold pb-5">{isSignUp ? 'Sign Up' : 'Login'}</h2>
-                <form onSubmit={handleFormSubmit}>
-                    {isSignUp && (
+                <h2 className="text-2xl font-bold pb-5"></h2>
+                <form>
                         <div className="mb-4">
                             <label htmlFor="username" className="block mb-2 text-sm font-medium">Your username</label>
                             <input
@@ -49,46 +46,44 @@ function SignInSignUp() {
                                 onChange={handleChange}
                             />
                         </div>
-                    )}
-                    {isSignUp && (
-                            <div class="mb-4">
-                        <label for="email" class="block mb-2 text-sm font-medium">Your email</label>
-                        <input
-                            type="email"
-                            id="email"
-                            class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
-                            placeholder="andrew@mail.com"
-                            required
-                            value={formState.email}
-                            onChange={handleChange}
-                        />
-                        </div>                    
-                    )}    
-                    {isSignUp && (
+
                         <div class="mb-4">
-                        <label for="password" class="block mb-2 text-sm font-medium">Your password</label>
-                        <input
-                            type="password"
-                            id="password"
-                            class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
-                            placeholder="*********"
-                            required
-                            value=""
-                            onChange={handleChange}
-                        />
+                            <label for="email" class="block mb-2 text-sm font-medium">Your email</label>
+                            <input
+                                type="email"
+                                id="email"
+                                class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
+                                placeholder="quack@mail.com"
+                                required
+                                value={formState.email}
+                                onChange={handleChange}
+                            />
+                        </div>      
+
+                        <div class="mb-4">
+                            <label for="password" class="block mb-2 text-sm font-medium">Your password</label>
+                            <input
+                                type="password"
+                                id="password"
+                                class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
+                                placeholder="*********"
+                                required
+                                value={formState.password}
+                                onChange={handleChange}
+                            />
                         </div>
-                    )}
+
                         <div className="flex items-center justify-between mb-4">
                         <button
                             type="button"
-                            onClick={() => setIsSignUp(false)}
+                            onClick={handleLogin}
                             className="text-white bg-purple-600 hover:bg-purple-700 focus:ring-2 focus:ring-blue-300 font-medium rounded-lg text-sm py-2.5 px-5 w-full sm:w-auto"
                         >
                             Log In
                         </button>
                         <button
                             type="button"
-                            onClick={() => setIsSignUp(true)}
+                            onClick={handleSignup}
                             className="text-white bg-purple-600 hover:bg-purple-700 focus:ring-2 focus:ring-blue-300 font-medium rounded-lg text-sm py-2.5 px-5 w-full sm:w-auto"
                         >
                             Sign Up
