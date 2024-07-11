@@ -1,14 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
 import { useMutation } from '@apollo/client'; 
-import { LOGIN_USER, SIGNUP_USER } from '../utils/mutations';
+import { LOGIN_USER, ADD_USER } from '../../utils/mutations';
 
 
 function SignInSignUp() {
     const [formState, setFormState] = useState({ username: '', email: '', password: '' });
     const [isSignUp, setIsSignUp] = useState(false); // State to toggle between sign in and sign up
     const [Login] = useMutation(LOGIN_USER);
-    const [signup] = useMutation(SIGNUP_USER);
+    const [signup] = useMutation(ADD_USER);
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();

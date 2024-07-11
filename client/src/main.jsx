@@ -3,6 +3,8 @@ import { Outlet } from 'react-router-dom';
 import App from './App';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 
 
 // Construct our main GraphQL API endpoint
@@ -33,10 +35,11 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const root = createRoot(document.getElementById('root'))
+root.render(
     
     <ApolloProvider client={client}>
-
+      <App />
       <Outlet />
     </ApolloProvider>
   );
