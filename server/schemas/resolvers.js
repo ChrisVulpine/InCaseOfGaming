@@ -93,7 +93,7 @@ Mutation: {
         return Game.findOneAndDelete({ _id: _id, name: name });
         }
     },
-},
+},// add functionality to remove games from wishlist and likedGames
 };
 
 module.exports = resolvers;

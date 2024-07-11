@@ -50,6 +50,6 @@ const typeDefs= `
         deleteGame(_id: ID!, name: String!): Game
         }
         
-    `
+    `//add functionality to remove games from wishlist and likedGames
 
 module.exports = typeDefs;
