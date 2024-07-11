@@ -4,9 +4,8 @@ const { ApolloServer } = require('apollo-server-express');
 
 const connectToDatabase = require('./config/connection');
 
-
-// FIXME:Navigate to where Nate has these made!! 
-const typeDefs = require('./schemas/typeDefs');
+// FIXME:Navigate to where Nate has these made!! //fixed!!
+const typeDefs = require('./schemas/typedefs');
 const resolvers = require('./schemas/resolvers');
 
 async function startServer() {
