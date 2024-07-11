@@ -1,6 +1,6 @@
 import './App.css';
 import { Outlet } from 'react-router-dom';
-
+import App from './App';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
@@ -33,14 +33,13 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-function App() {
-  return (
+ReactDOM.createRoot(document.getElementById('root')).render(
     
     <ApolloProvider client={client}>
 
       <Outlet />
     </ApolloProvider>
   );
-}
+
 
 export default App;
