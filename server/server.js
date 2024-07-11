@@ -3,13 +3,20 @@ const path = require('path');
 
 
 const { ApolloServer } = require('apollo-server-express');
+const { expressMiddleware } = require('@apollo/server/express');
+const {authMiddleware} = require('./utils/auth');
+
+const db = require('./config/connection');
+const { typeDefs, resolvers } = require('./schemas');
+//const routes = require('./routes');
 
 
-const connectToDatabase = require('./config/connection');
+const PORT = process.env.PORT || 3001;
+const server = new ApolloServer({ typeDefs, resolvers });
+const app = express();
 
-// FIXME:Navigate to where Nate has these made!! //fixed!!
-const typeDefs = require('./schemas/typedefs');
-const resolvers = require('./schemas/resolvers');
+
+
 
 async function startServer() {
   await connectToDatabase();
