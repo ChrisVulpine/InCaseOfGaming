@@ -3,8 +3,10 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Signin from './assets/components/Signin'
+import Signin from './assets/components/Signin';
 import Home from './assets/components/Home';
+import Wishlist from './assets/components/Wishlist';
+import LikedGames from './assets/components/LikedGames';
 
 
 
@@ -20,6 +22,14 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Signin />
+      },
+      {
+        path: "/wishlist",
+        element: <Wishlist />
+      },
+      {
+        path: "/likedGames",
+        element: <LikedGames />
       }
     ]
   }
