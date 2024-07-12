@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Katherine-Be/InCaseOfGaming#readme",
   "dependencies": {
+    "apollo-server-express": "^3.13.0",
     "concurrently": "^8.2.2"
   }
 }
