@@ -36,9 +36,11 @@ const client = new ApolloClient({
 function App () {
   return (
     <ApolloProvider client={client}>
-      <ul>
+      <ul> // Navigation bar if desired//
         <li><a href="/">Home</a></li>
         <li><a href="/login">Login</a></li>
+        <li><a href="/wishlist">Wishlist</a></li>
+        <li><a href="/likedGames">Liked Games</a></li>
       </ul>
     <Outlet />
   </ApolloProvider >

@@ -7,6 +7,10 @@ function Home() {
     return (
 
         <>
+        <div>Search Bar</div>
+        <div>Top Games</div>
+        <div>sidebar for signedin users:wishlist/favorites</div>
+        <div>Buy Me Coffee Sidebar</div>
             <div>
                 <a href="https://vitejs.dev" target="_blank">
                     <img src={viteLogo} className="logo" alt="Vite logo" />
