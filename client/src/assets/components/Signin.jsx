@@ -1,43 +1,75 @@
 import React from 'react';
 import { useState } from 'react';
 import { useMutation } from '@apollo/client'; 
-import { LOGIN_USER, SIGNUP_USER } from '../utils/mutations';
+import { LOGIN_USER, ADD_USER } from '../../utils/mutations';
 
 
-function SignInSignUp() {
+function LogInSignUp() {
     const [formState, setFormState] = useState({ username: '', email: '', password: '' });
-    const [isSignUp, setIsSignUp] = useState(false); // State to toggle between sign in and sign up
-    const [Login] = useMutation(LOGIN_USER);
-    const [signup] = useMutation(SIGNUP_USER);
 
-    const handleFormSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            const mutation = isSignUp ? signup : login;
-            const { data } = await mutation({
-                variables: { ...formState }
-            });
-            // Assuming you have a function to handle login after receiving the token
-            auth.login(data.token);
-        } catch (e) {
-            console.error(e);
-        }
-    };
+//Just FYI(Previous code was for a single button. The new code is for two separate buttons - a sign up and a login button.)
 
+    //updates form state after user input
     const handleChange = (event) => {
+        // console.log("handleChange called");
+        // event.preventDefault()
         const { name, value } = event.target;
-        setFormState({
-            ...formState,
-            [name]: value
-        });
+        setFormState(prevState => ({ ...prevState, [name]: value }));
+       };
+
+    //checks form input
+    const validateForm = () => {
+        console.log("validateForm called");
+
+        const { username, email, password } = formState;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!username || !email || !password) {
+            alert('All fields are required.');
+            console.log (formState);
+            return false;
+        }
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address.');
+            console.log (formState);
+
+            return false;
+        } else if (password.length < 8) {
+            alert('Password must be at least 8 characters long.');
+            console.log (formState);
+            return false;
+        }
+        return true; // Form is valid
     };
+
+    //handles login submission
+    const handleLogin = (event) => {
+        console.log(formState)
+        console.log("handleLogin called");
+        event.preventDefault();
+        if (!validateForm()) return; //if validateForm test fails
+        // insert code to handle login, e.g., sending formState to a server for authentication
+        console.log('Logging in with:', formState);
+        //insert login logic
+    };
+
+    //handles signup submission
+    const handleSignup = (event) => {
+        console.log("handleSignup called");
+        
+        event.preventDefault();
+        if (!validateForm()) return;  //if validateForm test fails
+        // insert code to handle signup, e.g., sending formState to a server for account creation
+        console.log('Signing up with:', formState);
+        //insert signup logic
+
+    };
+
 
     return (
         <>
             <div className="w-96 backdrop-blur-lg bg-opacity-80 rounded-lg shadow-lg p-5 bg-gray-900 text-white">
-                <h2 className="text-2xl font-bold pb-5">{isSignUp ? 'Sign Up' : 'Login'}</h2>
-                <form onSubmit={handleFormSubmit}>
-                    {isSignUp && (
+                <h2 className="text-2xl font-bold pb-5"></h2>
+                <form>
                         <div className="mb-4">
                             <label htmlFor="username" className="block mb-2 text-sm font-medium">Your username</label>
                             <input
@@ -45,62 +77,61 @@ function SignInSignUp() {
                                 name="username"
                                 className="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
                                 placeholder="jsmith1"
-                                value={formState.username}
+                                required
+                                defaultValue={formState.username}
                                 onChange={handleChange}
                             />
                         </div>
-                    )}
-                    {isSignUp && (
-                            <div class="mb-4">
-                        <label for="email" class="block mb-2 text-sm font-medium">Your email</label>
-                        <input
-                            type="email"
-                            id="email"
-                            class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
-                            placeholder="andrew@mail.com"
-                            required
-                            value={formState.email}
-                            onChange={handleChange}
-                        />
-                        </div>                    
-                    )}    
-                    {isSignUp && (
+
                         <div class="mb-4">
-                        <label for="password" class="block mb-2 text-sm font-medium">Your password</label>
-                        <input
-                            type="password"
-                            id="password"
-                            class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
-                            placeholder="*********"
-                            required
-                            value=""
-                            onChange={handleChange}
-                        />
+                            <label for="email" class="block mb-2 text-sm font-medium">Your email</label>
+                            <input
+                                type="email"
+                                name="email"
+                                class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
+                                placeholder="quack@mail.com"
+                                required
+                                defaultValue={formState.email}
+                                onChange={handleChange}
+                            />
+                        </div>      
+
+                        <div class="mb-4">
+                            <label for="password" class="block mb-2 text-sm font-medium">Your password</label>
+                            <input
+                                type="password"
+                                name="password"
+                                class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
+                                placeholder="*********"
+                                required
+                                defaultValue={formState.password}
+                                onChange={handleChange}
+                            />
                         </div>
-                    )}
+
                         <div className="flex items-center justify-between mb-4">
                         <button
-                            type="button"
-                            onClick={() => setIsSignUp(false)}
+                            // type="button"
+                            onClickCapture={handleLogin}
                             className="text-white bg-purple-600 hover:bg-purple-700 focus:ring-2 focus:ring-blue-300 font-medium rounded-lg text-sm py-2.5 px-5 w-full sm:w-auto"
                         >
                             Log In
                         </button>
                         <button
-                            type="button"
-                            onClick={() => setIsSignUp(true)}
+                            // type="button"
+                            onClickCapture={handleSignup}
                             className="text-white bg-purple-600 hover:bg-purple-700 focus:ring-2 focus:ring-blue-300 font-medium rounded-lg text-sm py-2.5 px-5 w-full sm:w-auto"
                         >
                             Sign Up
                         </button>
-                    </div>
+                        </div>
                 </form>
             </div>
         </>
     );
 }
 
-export default SignInSignUp;
+export default LogInSignUp;
 
 
 // import React from 'react';
