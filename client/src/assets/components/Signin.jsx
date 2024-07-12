@@ -11,24 +11,31 @@ function LogInSignUp() {
 
     //updates form state after user input
     const handleChange = (event) => {
+        // console.log("handleChange called");
+        // event.preventDefault()
         const { name, value } = event.target;
         setFormState(prevState => ({ ...prevState, [name]: value }));
        };
 
     //checks form input
     const validateForm = () => {
+        console.log("validateForm called");
+
         const { username, email, password } = formState;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!username.trim() || !email.trim() || !password.trim()) {
+        if (!username || !email || !password) {
             alert('All fields are required.');
+            console.log (formState);
             return false;
         }
         if (!emailRegex.test(email)) {
             alert('Please enter a valid email address.');
+            console.log (formState);
+
             return false;
-        }
-        if (password.length < 8) {
+        } else if (password.length < 8) {
             alert('Password must be at least 8 characters long.');
+            console.log (formState);
             return false;
         }
         return true; // Form is valid
@@ -36,6 +43,8 @@ function LogInSignUp() {
 
     //handles login submission
     const handleLogin = (event) => {
+        console.log(formState)
+        console.log("handleLogin called");
         event.preventDefault();
         if (!validateForm()) return; //if validateForm test fails
         // insert code to handle login, e.g., sending formState to a server for authentication
@@ -45,6 +54,8 @@ function LogInSignUp() {
 
     //handles signup submission
     const handleSignup = (event) => {
+        console.log("handleSignup called");
+        
         event.preventDefault();
         if (!validateForm()) return;  //if validateForm test fails
         // insert code to handle signup, e.g., sending formState to a server for account creation
@@ -67,7 +78,7 @@ function LogInSignUp() {
                                 className="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
                                 placeholder="jsmith1"
                                 required
-                                value={formState.username}
+                                defaultValue={formState.username}
                                 onChange={handleChange}
                             />
                         </div>
@@ -76,11 +87,11 @@ function LogInSignUp() {
                             <label for="email" class="block mb-2 text-sm font-medium">Your email</label>
                             <input
                                 type="email"
-                                id="email"
+                                name="email"
                                 class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
                                 placeholder="quack@mail.com"
                                 required
-                                value={formState.email}
+                                defaultValue={formState.email}
                                 onChange={handleChange}
                             />
                         </div>      
@@ -89,31 +100,31 @@ function LogInSignUp() {
                             <label for="password" class="block mb-2 text-sm font-medium">Your password</label>
                             <input
                                 type="password"
-                                id="password"
+                                name="password"
                                 class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
                                 placeholder="*********"
                                 required
-                                value={formState.password}
+                                defaultValue={formState.password}
                                 onChange={handleChange}
                             />
                         </div>
 
                         <div className="flex items-center justify-between mb-4">
                         <button
-                            type="button"
-                            onClick={handleLogin}
+                            // type="button"
+                            onClickCapture={handleLogin}
                             className="text-white bg-purple-600 hover:bg-purple-700 focus:ring-2 focus:ring-blue-300 font-medium rounded-lg text-sm py-2.5 px-5 w-full sm:w-auto"
                         >
                             Log In
                         </button>
                         <button
-                            type="button"
-                            onClick={handleSignup}
+                            // type="button"
+                            onClickCapture={handleSignup}
                             className="text-white bg-purple-600 hover:bg-purple-700 focus:ring-2 focus:ring-blue-300 font-medium rounded-lg text-sm py-2.5 px-5 w-full sm:w-auto"
                         >
                             Sign Up
                         </button>
-                    </div>
+                        </div>
                 </form>
             </div>
         </>
