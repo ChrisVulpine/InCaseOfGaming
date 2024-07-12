@@ -24,13 +24,13 @@ const resolvers = {
         game: async (parent, {name}) => {
             return Game.findOne({name});
         },
-        me: async (parent, args, context) => {
-            if (context.user) {
-                return User.findOne({ _id: context.user._id }).populate('wishlist').populate('likedGames');
-            }
-            throw AuthenticationError('You need to be logged in!');
+    //     me: async (parent, args, context) => {
+    //         if (context.user) {
+    //             return User.findOne({ _id: context.user._id }).populate('wishlist').populate('likedGames');
+    //         }
+    //         throw AuthenticationError('You need to be logged in!');
 
-    },
+    // },
 },
 
 Mutation: {

@@ -30,6 +30,11 @@ module.exports = {
         const token = signToken(user);
         res.json({ token, user });
 
+        if (!token) {
+            return res.status(400).json({ message: 'Cannot find token!' });
+        }
+        console.log(error);
+
     },
     async getSingleUser({ user = null, params }, res) {
         const foundUser = await User.findOne({

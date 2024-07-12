@@ -34,8 +34,8 @@ const typeDefs= `
     type Query{
         users: [User]
         user(username: String!): User
-        wishlist(userId: ID!): Wishlist // should return games in wishlist
-        likedGames(userId: ID!): LikedGames // should return games in likedGames
+        wishlist(userId: ID!): Wishlist 
+        likedGames(userId: ID!): LikedGames 
         games: [Game]
         game(name: String!): Game
         }
