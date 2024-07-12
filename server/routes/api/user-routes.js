@@ -5,7 +5,7 @@ const {
     getSingleUser,
     addGameToWishlist,
     addGameToLikedGames
-} = require('../../controllers/user-controller');
+} = require('../../controllers/user-controllers');
 const { authMiddleware } = require('../../utils/auth');
 
 router.route('/').post(createUser);
