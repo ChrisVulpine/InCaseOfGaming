@@ -4,7 +4,7 @@ const wishlistSchema = new Schema({
     games: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Game',
+            ref: 'games',
         },
     ],
 });
