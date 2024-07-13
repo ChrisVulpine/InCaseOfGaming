@@ -11,11 +11,11 @@ const resolvers = {
             return User.findOne({ username }).populate('wishlist').populate('likedGames');
         },
         wishlist: async (parent, { userId }) => {
-            return Wishlist.findOne({user: userId}).populate('game');
+            return Wishlist.findOne({user: userId}).populate('games');
         },
         likedGames: async (parent, { userId }) => {
             // const params = username ? { username } : {};
-            return LikedGames.findOne({user: userId}).populate('game');
+            return LikedGames.findOne({user: userId}).populate('games');
         },
         games: async () => {
             // const params = username ? { username } : {};
