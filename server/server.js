@@ -47,6 +47,8 @@ async function startServer() {
   try {  
     
     await server.start(); // Start Apollo Server
+
+    // app.use(routes);
     app.use(express.urlencoded({ extended: true }));
     app.use(express.json());
   
@@ -54,6 +56,7 @@ async function startServer() {
 
   // server.applyMiddleware({ app });
     db.once('open', () => {
+      console.log('MongoDB database connection established successfully');
       app.listen( PORT, () => {
         console.log(`API server running on port ${PORT}!`);
         console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
