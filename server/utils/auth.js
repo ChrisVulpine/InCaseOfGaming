@@ -25,15 +25,15 @@ module.exports = {
 
         try {
             const { data } = jwt.verify(token, secret, { maxAge: '60 days' });
-            req.user = data;
-        } catch {
-            console.error('Invalid token');
-            return res.status(400).json({ message: 'invalid token!' });
+            return { user: data};
+        } catch(error) {
+            console.error('Invalid token',error);
+            throw new GraphQLError('Invalid token', {
+                extensions: {
+                    code: 'UNAUTHENTICATED',
+                },
+            });
         }
-
-        //return req;
-
-        next();
     },
     signToken: function ({ email, username, _id }) {
         const payload = { email, username, _id };
