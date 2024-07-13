@@ -10,17 +10,13 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
+        minlength: 5,
     },
     email: {
         type: String,
         required: true,
         unique: true,
         match: [/.+@.+\..+/, 'Please enter a valid e-mail address'],
-    },
-    password: {
-        type: String,
-        required: true,
-        minlength: 5,
     },
     wishlist: [
         {
