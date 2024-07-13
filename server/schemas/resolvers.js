@@ -70,11 +70,11 @@ Mutation: {
     },
     addWishlist: async (parent, { userId, gameIds }, context) => {
         if (context.user && context.user._id === userId) {
-            const wishlist = await wishlist.findOneAndUpdate(
+            const wishlist = await Wishlist.findOneAndUpdate(
                 { user: userId },
                 { $addToSet: { games: { $each: gameIds } } },
                 { new: true, upsert: true }
-            ).populate('game');
+            ).populate('games');
             return wishlist;
         }
     },
