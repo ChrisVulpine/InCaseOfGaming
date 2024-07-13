@@ -16,8 +16,12 @@ module.exports = {
         }
 
         if (!token) {
-            return res.status(400).json({ message: 'You have no token!' });
-        }
+           throw new GraphQLError('You have no token.', {
+               extensions: {
+                   code: 'UNAUTHENTICATED',
+               },
+        });
+    }
 
         try {
             const { data } = jwt.verify(token, secret, { maxAge: '60 days' });
