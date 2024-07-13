@@ -21,13 +21,13 @@ const userSchema = new Schema({
     wishlist: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'wishlist',
+            ref: 'Game',
         },
     ],
     likedGames: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'likedGames',
+            ref: 'Game',
         },
     ],
 });
