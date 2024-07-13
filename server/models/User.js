@@ -10,6 +10,7 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
+        minlength: 5,
     },
     email: {
         type: String,
@@ -17,21 +18,16 @@ const userSchema = new Schema({
         unique: true,
         match: [/.+@.+\..+/, 'Please enter a valid e-mail address'],
     },
-    password: {
-        type: String,
-        required: true,
-        minlength: 5,
-    },
     wishlist: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'wishlist',
+            ref: 'Game',
         },
     ],
     likedGames: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'likedGames',
+            ref: 'Game',
         },
     ],
 });

@@ -1,7 +1,7 @@
 
 const { GraphQLError } = require('graphql');
 const jwt = require('jsonwebtoken');
-const secret = 'mysecretss'; // This secret should be in an environment variable
+const secret = process.env.JWT_SECRET || 'mysecretss'; // This secret should be in an environment variable
 module.exports = {
     AuthenticationError: new GraphQLError('Could not authenticate user.',{
         extensions: {
@@ -9,27 +9,31 @@ module.exports = {
         },
     }),
     authMiddleware: function ({ req }) {
-        let token = req.body.token || req.query.token || req.headers.authorization;
+        let token = req.body?.token || req.query?.token || req.headers?.authorization;
 
-        if (req.headers.authorization) {
+        if (req.headers?.authorization) {
             token = token.split(' ').pop().trim();
         }
 
         if (!token) {
-            return res.status(400).json({ message: 'You have no token!' });
-        }
+           throw new GraphQLError('You have no token.', {
+               extensions: {
+                   code: 'UNAUTHENTICATED',
+               },
+        });
+    }
 
         try {
             const { data } = jwt.verify(token, secret, { maxAge: '60 days' });
-            req.user = data;
-        } catch {
-            console.error('Invalid token');
-            return res.status(400).json({ message: 'invalid token!' });
+            return { user: data};
+        } catch(error) {
+            console.error('Invalid token',error);
+            throw new GraphQLError('Invalid token', {
+                extensions: {
+                    code: 'UNAUTHENTICATED',
+                },
+            });
         }
-
-        //return req;
-
-        next();
     },
     signToken: function ({ email, username, _id }) {
         const payload = { email, username, _id };
