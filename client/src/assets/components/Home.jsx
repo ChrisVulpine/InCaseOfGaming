@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { useState } from 'react'
 import reactLogo from '../../assets/react.svg'
 import viteLogo from '/vite.svg'
+import Nav from './SideBarTest'
 
 import Results from './Results'
 
@@ -25,15 +26,25 @@ function Home() {
         { name: "Game 15", image: "image15.jpg", description: "This is a description of game 15." },
         { name: "Game 16", image: "image16.jpg", description: "This is a description of game 16." }
       ];
+
+      const navIndex = {
+        zIndex:1
+    }
+    const resultsIndex = {
+        zIndex:0
+    }
       
     return (
 
         <>
-        <div>Search Bar</div>
+        <div class="absolute">
+            {/* <Header class="z-20"/> */}
+            <Nav style={navIndex}/>
 
-<Results games={games} />
+            <Results games={games} style={resultsIndex}/>
+            </div>
 
-        <div>Top Games</div>
+        {/* <div>Top Games</div>
         <div>sidebar for signedin users:wishlist/favorites</div>
         <div>Buy Me Coffee Sidebar</div>
             <div>
@@ -48,14 +59,14 @@ function Home() {
             <div className="card">
                 {/* <button onClick={() => setCount((count) => count + 1)}>
         count is {count}
-      </button> */}
+      </button> 
                 <p>
                     Edit <code>src/App.jsx</code> and save to test HMR
                 </p>
             </div>
             <p className="read-the-docs">
                 Click on the Vite and React logos to learn more
-            </p>
+            </p> */}
         </>
     )
 }
