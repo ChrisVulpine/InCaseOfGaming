@@ -1,10 +1,12 @@
-
-
+import React from 'react';
 import Nav from './NavSideBar'
-
 import Results from './Results'
+import QUERY_GAMES from '../../utils/queries';
 
 function Home() {
+
+
+    
     const games = [
         { name: "Game 1", image: "image1.jpg", description: "This is a description of game 1." },
         { name: "Game 2", image: "image2.jpg", description: "This is a description of game 2." },
