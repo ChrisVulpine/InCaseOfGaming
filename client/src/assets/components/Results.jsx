@@ -15,8 +15,8 @@ function Results(props) {
     props.games.map((game, index) => {
       newCards.push(
         <article class="mx-0.5 md:mx-.5 shadow-xl bg-cover bg-center max-h-50 lg:max-h-150 relative border-8 border-black  transform duration-500 hover:-translate-y-12 group">
-          <div style={{ zIndex: index, backgroundImage: `url(${game.image})` }} class="bg-black relative h-full group-hover:bg-opacity-0 lg:min-h-150  flex flex-wrap flex-col pt-[5rem] sm:pt-[10rem] hover:bg-opacity-75 transform duration-300">
-            <div class=" bg-white   p-.5 h-full justify-end flex flex-col">
+          <div style={{ zIndex: index, backgroundImage: `url(${game.image})` }} class="bg-white relative h-full group-hover:bg-opacity-0 lg:min-h-150  flex flex-wrap flex-col pt-[5rem] sm:pt-[10rem] hover:bg-opacity-75 transform duration-300">
+            <div class=" bg-black   p-.5 h-full justify-end flex flex-col">
               <h1 class="text-white mt-2 text-xs md:text-xl mb-5 transform  translate-y-10 uppercase group-hover:translate-y-0 duration-300 group-hover:text-indigo-400"> {game.name} </h1>
               <p class="opacity-0 text-white text-xs md:text-xl group-hover:opacity-80 transform duration-500 "> {game.description} </p>
             </div>
