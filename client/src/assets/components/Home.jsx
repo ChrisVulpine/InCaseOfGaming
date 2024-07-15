@@ -1,13 +1,18 @@
-
-import { createRoot } from 'react-dom/client';
-import { useState } from 'react'
-import reactLogo from '../../assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from 'react';
 import Nav from './NavSideBar'
-
 import Results from './Results'
+import { QUERY_GAMES } from '../../utils/queries';
 
 function Home() {
+
+    // const games = ({onSearch}) => {
+    //     const { loading, error, data } = useQuery(QUERY_GAMES);
+    //     if (loading) return 'Loading...';
+    //     if (error) return `Error! ${error.message}`;
+    //     return data;
+    // }
+
+
     const games = [
         { name: "Game 1", image: "image1.jpg", description: "This is a description of game 1." },
         { name: "Game 2", image: "image2.jpg", description: "This is a description of game 2." },
@@ -37,17 +42,15 @@ function Home() {
     return (
 
         <>
-        <div className="absolute">
+
             {/* <Header class="z-20"/> */}
             <Nav style={navIndex}/>
 
             <Results games={games} style={resultsIndex}/>
-            </div>
 
         {/* <div>Top Games</div>
         <div>sidebar for signedin users:wishlist/favorites</div>
         <div>Buy Me Coffee Sidebar</div> */}
-
         </>
     )
 }

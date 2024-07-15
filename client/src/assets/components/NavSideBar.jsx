@@ -1,7 +1,12 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import Logo from './../images/InCaseOfGaming.png';
+//for signin modal
+import { useState } from 'react';
 
 
-function SideBarTest() {
+function NavSideBar() {
+
     const headerIndex = {
         zIndex:0
     }
@@ -10,54 +15,54 @@ function SideBarTest() {
         zIndex:1
     }
 
+    //open Signin Modal
+    const  [isModalVisible, setIsModalVisible] = useState(false)
+
+
+
     return (
-        <div style={headerIndex} className="isolate object-left items-center w-dvw h-48 overflow-hidden text-gray-400 bg-gray-900 ">
-            <div style={navIndex} className="fixed object-left items-center w-24 md:w-48 lg:w-60 h-dvh overflow-hidden text-gray-400 bg-gray-900 ">
-                <a className="flex items-center w-full h-12 px-3 mt-2 py-0 md:py-10" href="#">
-                <svg className="w-8 h-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path
-                    d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z" />
-                </svg>
-                <span className="ml-2 text-sm md:text-md  lg:text-xl font-bold">The App</span>
-                </a>
-                <div className="w-full px-2">
-                    <div className="flex flex-col items-center w-full mt-3 border-t border-gray-700">
-                        <a className="flex items-center w-full h-12 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+        <div class="isolate object-left items-center max-w-dvh md:w-100 2xl:w-screen h-60 overflow-hidden text-gray-400 bg-slate-900" style={headerIndex}>
+            <div class="grid grid-cols-4 grid-rows-2 h-60 items-stretch justify-center sm:ml-0 md:ml-72 lg:ml-64 p-6">
+                <div class="col-start-2 md:col-start-1 col-end-4 text-3xl md:text-7xl lg:text-8xl text-center">
+                    In Case Of Gaming
+                </div>
+                <div class="col-start-4 self-center text-xsmd:text-4xl rounded-md border border-transparent bg-indigo-600 px-4 py-2 font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    <button type onClick="" >Log In</button>
+                </div>
+                <div class="col-start-2 col-end-4 place-self-end w-full max-w-lg">
+                    <form class="mt-5 sm:flex sm:items-center">
+                        <input id="q" name="q" class="inline w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-3 leading-5 placeholder-gray-500 focus:border-indigo-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm" placeholder="Keyword" type="search" autofocus="" value="" />
+                        <button type="submit" class="mt-3 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 md:font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                            Search
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div style={navIndex} class="fixed flex-col items-center -mt-60 w-24 md:w-52 lg:w-64 h-dvh overflow-hidden text-gray-400 bg-slate-900 ">
+                <div class="flex flex-col items-center w-full mt-3 border-b ml-2 border-gray-700">
+                    <NavLink to="/" className={({ isActive }) => isActive ? ' sm:px-2 md:px-8 mt-2 rounded hover:bg-gray-700 hover:text-gray-300' : 'sm:px-2 md:px-8 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300'}>
+                    <img src={Logo} ></img>
+                    </NavLink>
+                </div>
+                <div class="w-full px-2">
+                    <div class="flex flex-col items-center w-full mt-3 border-b border-gray-700">
+                        <NavLink to="/" className={({ isActive }) => isActive ? 'active flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300' : 'flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300'}>
                             {/*can insert small icon here*/}
-                            <span className="ml-2 text-sm md:text-md lg:text-xl">Dasboard</span>
-                        </a>
-                        <a className="flex items-center w-full h-12 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+                            <span class="ml-2 text-sm md:text-lg lg:text-xl font-medium">Search</span>
+                        </NavLink>
+                        <NavLink to="/LikedGames" className={({ isActive }) => isActive ? 'active flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300' : 'flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300'}>
                             {/*can insert small icon here*/}
-                            <span className="ml-2 text-sm md:text-md  lg:text-xl font-medium">Search</span>
-                        </a>
-                        <a className="flex items-center w-full h-12 px-3 mt-2 py-0 md:py-10 text-gray-200 bg-gray-700 rounded" href="#">
+                            <span class="ml-2 text-sm md:text-lg lg:text-xl font-medium">Favorites</span>
+                        </NavLink>
+                        <NavLink to="/Wishlist" className={({ isActive }) => isActive ? 'active flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300' : 'flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300'}>
                             {/*can insert small icon here*/}
-                            <span className="ml-2 text-sm md:text-md  lg:text-xl font-medium">Insights</span>
-                        </a>
-                        <a className="flex items-center w-full h-12 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
-                            {/*can insert small icon here*/}
-                            <span className="ml-2 text-sm md:text-md  lg:text-xl font-medium">Docs</span>
-                        </a>
-                    </div>
-                    <div className="flex flex-col items-center w-full mt-2 py-0 md:py-10 border-t border-gray-700">
-                        <a className="flex items-center w-full h-12 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
-                            {/*can insert small icon here*/}
-                            <span className="ml-2 text-sm md:text-md  lg:text-xl font-medium">Products</span>
-                        </a>
-                        <a className="flex items-center w-full h-12 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
-                            {/*can insert small icon here*/}
-                            <span className="ml-2 text-sm md:text-md  lg:text-xl font-medium">Settings</span>
-                        </a>
-                        <a className="relative flex items-center w-full h-12 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300"
-                            href="#">
-                            {/*can insert small icon here*/}
-                            <span className="ml-2 text-sm md:text-md  lg:text-xl font-medium">Messages</span>
-                            <span className="absolute top-0 left-0 w-2 h-2 mt-2 py-0 md:py-10 ml-2 text-sm bg-indigo-500 rounded-full"></span>
-                        </a>
+                            <span class="ml-2 text-sm md:text-lg lg:text-xl font-medium">Wishlist</span>
+                        </NavLink>
+
                     </div>
                 </div>
-                <a className="flex items-center justify-center w-full h-16 mt-auto bg-gray-800 hover:bg-gray-700 hover:text-gray-300"
-                    href="#">
+                <a class="flex items-center w-full h-12 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+
                     {/* below is a portfolio icon*/}
                     {/* <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
@@ -71,4 +76,6 @@ function SideBarTest() {
     )
 }
 
-export default SideBarTest;
+export default NavSideBar;
+
+{/* <a class="flex items-center w-full h-12 px-3 mt-2 py-0 md:py-10 text-gray-200 bg-gray-700 rounded" href="#"> */}
