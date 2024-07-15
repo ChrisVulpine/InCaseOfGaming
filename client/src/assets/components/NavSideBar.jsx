@@ -18,7 +18,7 @@ function NavSideBar() {
     return (
         <div class="isolate object-left items-center max-w-dvh md:w-100 2xl:w-screen h-60 overflow-hidden text-gray-400 bg-slate-900" style={headerIndex}>
             <div class="grid grid-cols-4 grid-rows-2 h-60 items-stretch justify-center sm:ml-0 md:ml-72 lg:ml-64 p-6">
-                <div class="col-span-4 text-8xl text-center">
+                <div class="col-span-4 text-7xl lg:text-8xl text-center">
                     In Case Of Gaming
                 </div>
                 <div class="col-start-2 col-end-4 place-self-end w-full max-w-lg">

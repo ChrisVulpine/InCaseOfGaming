@@ -35,7 +35,7 @@ function LikedGames() {
             {/* <Header class="z-20"/> */}
             <Nav style={navIndex}/>
 
-            <Results games={favoriteGames} style={resultsIndex}/>
+            {/* <Results games={favoriteGames} style={resultsIndex}/> */}
             </div>
 
         {/* <div>Top Games</div>

@@ -31,7 +31,7 @@ function Wishlist() {
             {/* <Header class="z-20"/> */}
             <Nav style={navIndex}/>
 
-            <Results games={wantedGames} style={resultsIndex}/>
+            {/* <Results games={wantedGames} style={resultsIndex}/> */}
             </div>
 
         {/* <div>Top Games</div>
