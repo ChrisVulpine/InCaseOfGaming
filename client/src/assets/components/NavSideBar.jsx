@@ -32,7 +32,7 @@ function NavSideBar() {
             </div>
             <div style={navIndex} class="fixed flex-col items-center -mt-60 w-24 md:w-52 lg:w-64 h-dvh overflow-hidden text-gray-400 bg-slate-900 ">
                 <div class="flex flex-col items-center w-full mt-3 border-b ml-2 border-gray-700">
-                    <NavLink to="/" className={({ isActive }) => isActive ? 'active sm:px-2 md:px-8 mt-2 rounded hover:bg-gray-700 hover:text-gray-300' : 'sm:px-2 md:px-8 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300'}>
+                    <NavLink to="/" className={({ isActive }) => isActive ? ' sm:px-2 md:px-8 mt-2 rounded hover:bg-gray-700 hover:text-gray-300' : 'sm:px-2 md:px-8 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300'}>
                     <img src={Logo} ></img>
                     </NavLink>
                 </div>

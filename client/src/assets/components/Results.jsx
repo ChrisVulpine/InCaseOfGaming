@@ -19,12 +19,12 @@ function Results(props) {
             <div class=" bg-black   p-.5 h-full justify-end flex flex-col">
               <h1 class="text-white mt-2 text-xs md:text-xl mb-5 transform  translate-y-10 uppercase group-hover:translate-y-0 duration-300 group-hover:text-indigo-400"> {game.name} </h1>
               <p class="opacity-0 text-white text-xs md:text-xl group-hover:opacity-80 transform duration-500 "> {game.description} </p>
-                <div class="inline-flex">
-                  <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l">
+                <div class="glex-wrap">
+                  <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 text-xs font-bold rounded-l">
                     Favorite
                   </button>
-                  <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
-                    Add to Wishlist
+                  <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 text-xs font-bold rounded-r">
+                    Wishlist
                   </button>
                 </div>
             </div>
