@@ -10,11 +10,11 @@ function Results(props) {
     // const [isFetching, setIsFetching] = useState(false); // maybe use for fetching/loading purposes
     const newCards = [];
 
-    
+ 
 
     props.games.map((game, index) => {
       newCards.push(
-        <article class="mx-0.5 md:mx-.5 shadow-xl bg-cover bg-center max-h-50 lg:max-h-150 relative border-8 border-black  transform duration-500 hover:-translate-y-12 group">
+        <article key={index} class="mx-0.5 md:mx-.5 shadow-xl bg-cover bg-center max-h-50 lg:max-h-150 relative border-8 border-black  transform duration-500 hover:-translate-y-12 group">
           <div style={{ zIndex: index, backgroundImage: `url(${game.image})` }} class="bg-white relative h-full group-hover:bg-opacity-0 lg:min-h-150  flex flex-wrap flex-col pt-[5rem] sm:pt-[10rem] hover:bg-opacity-75 transform duration-300">
             <div class=" bg-black   p-.5 h-full justify-end flex flex-col">
               <h1 class="text-white mt-2 text-xs md:text-xl mb-5 transform  translate-y-10 uppercase group-hover:translate-y-0 duration-300 group-hover:text-indigo-400"> {game.name} </h1>
@@ -55,9 +55,9 @@ function Results(props) {
 
   return (
 
-    <div class="bg-white ml-20 md:ml-48 lg:ml-52 xl:ml-42 max-w-screen-xl 2xl:max-w-screen-2xl px-8 md:px-12 lg:px-0 mx-auto mb-12 lg:mb-24 space-y-12 flex flex-col justify-center lg:justify-left">
+    <div className="bg-white ml-20 md:ml-48 lg:ml-52 xl:ml-42 max-w-screen-xl 2xl:max-w-screen-2xl px-8 md:px-12 lg:px-0 mx-auto mb-12 lg:mb-24 space-y-12 flex flex-col justify-center lg:justify-left">
   {/* <!-- Starts component --> */}
-        <div class="grid grid-cols-3  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:gap-2 content-center mt-12 list-none max-w-5xl xl:max-w-none mx-auto lg:mx-0 lg:ml-20" role="list"> {/* change grid-cols-n to change overflow */}
+        <div className="grid grid-cols-3  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:gap-2 content-center mt-12 list-none max-w-5xl xl:max-w-none mx-auto lg:mx-0 lg:ml-20" role="list"> {/* change grid-cols-n to change overflow */}
         {/* <!---
                     // Loop through the features array to render each feature dynamically.
                     //

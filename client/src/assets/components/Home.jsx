@@ -42,6 +42,7 @@ function Home() {
     return (
 
         <>
+
             {/* <Header class="z-20"/> */}
             <Nav style={navIndex}/>
 
