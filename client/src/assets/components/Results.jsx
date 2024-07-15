@@ -11,15 +11,16 @@ function Results(props) {
     const newCards = [];
 
     // for (let i = 0; i < count; i++) {
+      // eslint-disable-next-line react/prop-types
       props.games.forEach((game, index) => 
         newCards.push(
-            <article style={{ position: 'static', zIndex:`${game.index}`}} class="mx-auto shadow-xl bg-cover bg-center max-h-50 lg:max-h-150 relative border-8 border-black  transform duration-500 hover:-translate-y-12   group">
-                <div style={{ backgroundImage: `url(${game.image})` }} class="bg-black relative h-full group-hover:bg-opacity-0 min-h-150  flex flex-wrap flex-col pt-[10rem] hover:bg-opacity-75 transform duration-300">
-                     <div class=" bg-black p-2  md:p-8 h-full justify-end flex flex-col">
-                        <fig key={index}>
-                        <h1 class="text-white mt-2 text-xs md:text-xl mb-5 transform  translate-y-10 uppercase group-hover:translate-y-0 duration-300 group-hover:text-indigo-400"> {game.name} </h1>
-                        <p class="opacity-0 text-white text-xs md:text-xl group-hover:opacity-80 transform duration-500 "> {game.description} </p>
-                      </fig>
+            <article key={index} style={{ position: 'static', zIndex:`${game.index}`}} className="mx-auto shadow-xl bg-cover bg-center max-h-50 lg:max-h-150 relative border-8 border-black  transform duration-500 hover:-translate-y-12   group">
+                <div style={{ backgroundImage: `url(${game.image})` }} className="bg-black relative h-full group-hover:bg-opacity-0 min-h-150  flex flex-wrap flex-col pt-[10rem] hover:bg-opacity-75 transform duration-300">
+                     <div className=" bg-black p-2  md:p-8 h-full justify-end flex flex-col">
+                        <figure key={index}>
+                        <h1 className="text-white mt-2 text-xs md:text-xl mb-5 transform  translate-y-10 uppercase group-hover:translate-y-0 duration-300 group-hover:text-indigo-400"> {game.name} </h1>
+                        <p className="opacity-0 text-white text-xs md:text-xl group-hover:opacity-80 transform duration-500 "> {game.description} </p>
+                      </figure>
                     </div>
                 </div>
             </article>
@@ -48,9 +49,9 @@ function Results(props) {
 
   return (
 
-    <div class="bg-white ml-20 md:ml-48 lg:ml-52 xl:ml-42 max-w-screen-xl 2xl:max-w-screen-2xl px-8 md:px-12 lg:px-0 mx-auto mb-12 lg:mb-24 space-y-12 flex flex-col justify-center lg:justify-left">
+    <div className="bg-white ml-20 md:ml-48 lg:ml-52 xl:ml-42 max-w-screen-xl 2xl:max-w-screen-2xl px-8 md:px-12 lg:px-0 mx-auto mb-12 lg:mb-24 space-y-12 flex flex-col justify-center lg:justify-left">
   {/* <!-- Starts component --> */}
-        <div class="grid grid-cols-3  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:gap-2 content-center mt-12 list-none max-w-5xl xl:max-w-none mx-auto lg:mx-0 lg:ml-20" role="list"> {/* change grid-cols-n to change overflow */}
+        <div className="grid grid-cols-3  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:gap-2 content-center mt-12 list-none max-w-5xl xl:max-w-none mx-auto lg:mx-0 lg:ml-20" role="list"> {/* change grid-cols-n to change overflow */}
         {/* <!---
                     // Loop through the features array to render each feature dynamically.
                     //

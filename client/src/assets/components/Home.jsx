@@ -37,7 +37,7 @@ function Home() {
     return (
 
         <>
-        <div class="absolute">
+        <div className="absolute">
             {/* <Header class="z-20"/> */}
             <Nav style={navIndex}/>
 
