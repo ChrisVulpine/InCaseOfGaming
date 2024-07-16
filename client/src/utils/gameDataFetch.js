@@ -25,7 +25,7 @@ async function fetchGameDetails(searchValue) {
       }
 }
 
-fetchGameDetails(searchValue);
+fetchGameDetails();
 
 export default fetchGameDetails;
 
