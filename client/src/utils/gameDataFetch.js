@@ -1,11 +1,12 @@
 import axios from 'axios';
-let searchValue = document.getElementById('q').value;
+
 async function fetchGameDetails(searchValue) {
     
     const options = {
         method: 'GET',
-        url: 'https://steam2.p.rapidapi.com/search/${searchValue}/page/1',
-        params: {
+        // change URL to new api
+        url: 'https://steam2.p.rapidapi.com/search/Counter/page/1',
+            params: {
             query: searchValue,
             limit: '2'
         },
