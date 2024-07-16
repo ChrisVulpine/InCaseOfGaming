@@ -9,6 +9,7 @@ import fetchGameDetails from '../../utils/gameDataFetch';
 
 
 function NavSideBar() {
+  
 
     const headerIndex = {
         zIndex:0
