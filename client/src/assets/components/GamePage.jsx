@@ -14,9 +14,12 @@ function GamePage() {
                     <div class="card-languages animate__animated animate__fadeIn">
                         <span class="language-tag css-tag"><i class="fab fa-css3-alt"></i> Steam Price: </span>
                     </div>
-                    <a href="https://github.com/your-username/your-repo" class="card-link">
-                        <i class="fab fa-github"></i> View on GitHub
-                    </a>
+                    <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 text-xs lg:text-4xl lg:pr-5 font-bold rounded-l">
+                    Favorite
+                  </button>
+                  <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 text-xs lg:text-4xl lg:pl-5 font-bold rounded-r">
+                    Wishlist
+                  </button>
                 </div>
             </div>
             
