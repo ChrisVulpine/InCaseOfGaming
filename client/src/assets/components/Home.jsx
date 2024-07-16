@@ -5,12 +5,23 @@ import { QUERY_GAMES } from '../../utils/queries';
 
 function Home() {
 
-    // const games = ({onSearch}) => {
-    //     const { loading, error, data } = useQuery(QUERY_GAMES);
-    //     if (loading) return 'Loading...';
-    //     if (error) return `Error! ${error.message}`;
-    //     return data;
-    // }
+//    function to fetch game details
+    const [searchQuery , setSearchQuery] = useState('');
+
+    const handleSearchSubmit = async (e) => {
+        e.preventDefault();
+        const details = await fetchGameDetails(searchQuery);
+        console.log(details);
+    };
+    
+
+    useEffect(() => {
+        const fetchDetails = async () => {
+            const details = await fetchGameDetails();
+            console.log(details);
+        };
+        fetchDetails();
+    }, []);
 
 
     const games = [
