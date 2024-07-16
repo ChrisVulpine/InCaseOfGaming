@@ -4,10 +4,16 @@ import { useMutation } from '@apollo/client';
 import { LOGIN_USER, ADD_USER } from '../../utils/mutations';
 
 
+
+//========================================================================
+// Functions to add to Login and Add User using mutations -cdl
+//========================================================================
+
 function LogInSignUp() {
     const [formState, setFormState] = useState({ username: '', email: '', password: '' });
-
-//Just FYI(Previous code was for a single button. The new code is for two separate buttons - a sign up and a login button.)
+    const [login] = useMutation(LOGIN_USER);
+    const [addUser] = useMutation(ADD_USER);
+    //Just FYI(Previous code was for a single button. The new code is for two separate buttons - a sign up and a login button.)
 
     //updates form state after user input
     const handleChange = (event) => {
@@ -17,7 +23,7 @@ function LogInSignUp() {
         setFormState(prevState => ({ ...prevState, [name]: value }));
        };
 
-    //checks form input
+    //============= Validates Input Form =================//
     const validateForm = () => {
         console.log("validateForm called");
 
@@ -31,8 +37,8 @@ function LogInSignUp() {
         if (!emailRegex.test(email)) {
             alert('Please enter a valid email address.');
             console.log (formState);
-
             return false;
+
         } else if (password.length < 8) {
             alert('Password must be at least 8 characters long.');
             console.log (formState);
@@ -41,29 +47,58 @@ function LogInSignUp() {
         return true; // Form is valid
     };
 
-    //handles login submission
-    const handleLogin = (event) => {
+//========================================================================
+// Function to handle login using mutations -cdl
+//========================================================================
+
+    const handleLogin = async (event) => {
+        event.preventDefault();
+
         console.log(formState)
         console.log("handleLogin called");
-        event.preventDefault();
+
+
         if (!validateForm()) return; //if validateForm test fails
-        // insert code to handle login, e.g., sending formState to a server for authentication
         console.log('Logging in with:', formState);
-        //insert login logic
+
+        try {
+            const { data } = await login({
+                variables: { ...formState },
+            });
+            console.log('Login successful:', data);
+        } catch (error) {
+            console.error('Error logging in:', error);
+        }
     };
 
-    //handles signup submission
-    const handleSignup = (event) => {
+//========================================================================
+// Function to handle sign up using mutations -cdl
+//========================================================================
+
+    const handleSignup = async (event) => {
         console.log("handleSignup called");
         
         event.preventDefault();
-        if (!validateForm()) return;  //if validateForm test fails
-        // insert code to handle signup, e.g., sending formState to a server for account creation
-        console.log('Signing up with:', formState);
-        //insert signup logic
 
+        if (!validateForm()) return;  //if validateForm test fails
+        console.log('Signing up with:', formState);
+
+        //insert signup logic
+        try {
+            const { data } = await addUser({
+                variables: { ...formState },
+            });
+            console.log('Signup successful:', data);
+        } catch (error) {
+            console.error('Error signing up:', error);
+        }
     };
 
+//     const data = await response.json();
+//     console.log('Response from server:', data);
+// };
+        
+//========================================================================
 
     return (
         <>
@@ -83,12 +118,12 @@ function LogInSignUp() {
                             />
                         </div>
 
-                        <div class="mb-4">
-                            <label for="email" class="block mb-2 text-sm font-medium">Your email</label>
+                        <div className="mb-4">
+                            <label htmlFor="email" className="block mb-2 text-sm font-medium">Your email</label>
                             <input
                                 type="email"
                                 name="email"
-                                class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
+                                className="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
                                 placeholder="quack@mail.com"
                                 required
                                 defaultValue={formState.email}
@@ -96,12 +131,12 @@ function LogInSignUp() {
                             />
                         </div>      
 
-                        <div class="mb-4">
-                            <label for="password" class="block mb-2 text-sm font-medium">Your password</label>
+                        <div className="mb-4">
+                            <label htmlFor="password" className="block mb-2 text-sm font-medium">Your password</label>
                             <input
                                 type="password"
                                 name="password"
-                                class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
+                                className="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
                                 placeholder="*********"
                                 required
                                 defaultValue={formState.password}

@@ -15,6 +15,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement: <h1>Oh no! Something went wrong!</h1>,
     children: [
       {
         path: "/",
@@ -41,9 +42,13 @@ const router = createBrowserRouter([
 ]);
 
 const root = createRoot(document.getElementById('root'))
+
 root.render(
+
   <RouterProvider router={router} />
+
 );
 
 
+//needed? -CDL
 export default App;

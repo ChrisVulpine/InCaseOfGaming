@@ -7,7 +7,10 @@
     "start": "node server/server.js",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm run dev\"",
     "install": "cd server && npm install && cd ../client && npm install",
-    "build": "cd client && npm run build"
+    "build:client": "cd client && npm i && npm run build",
+    "build:server": "cd server && npm i",
+    "build": "concurrently \"npm run build:client\" \"npm run build:server\"",
+    "render-build": "npm install && npm run build"
   },
   "repository": {
     "type": "git",
@@ -21,6 +24,8 @@
   "homepage": "https://github.com/Katherine-Be/InCaseOfGaming#readme",
   "dependencies": {
     "apollo-server-express": "^3.13.0",
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.4"
   }
 }
