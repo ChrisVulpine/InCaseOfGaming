@@ -6,7 +6,7 @@ body {
   background-color: #374151;
 }
 
-/* //for GamePageFont */
+/* styling for GamePage*/
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap');
 
 @keyframes rgb-background {
@@ -22,8 +22,10 @@ body {
   margin-top: 10vh;
   background: rgba(20, 20, 20, 0.8);
   border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+  overflow: scroll;
+  overflow-x: hidden;
+  scrollbar-color: rgb(15 23 42) rgb(132 17 17) ;
+  box-shadow: 0 20px 50px  rgba(132, 17, 17, 0.5);
   transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
   backdrop-filter: blur(10px);
   transform-style: preserve-3d;
@@ -32,7 +34,7 @@ body {
 
 .card:hover {
   transform: translateY(-10px) rotateX(5deg) rotateY(-5deg) scale(1.05);
-  box-shadow: 0 20px 50px rgba(0, 255, 255, 0.5), 0 0 60px rgba(255, 0, 255, 0.3);
+  box-shadow: 0 20px 50px rgba(79, 70, 229, 0.5) , -6px -11px 20px 7px  rgba(132, 17, 17, 0.5);
 }
 
 .card::before {
@@ -68,28 +70,28 @@ body {
 }
 
 .card-content {
-  padding: 30px;
+  padding: 20px;
   position: relative;
 }
 
 .card-title {
-  font-family: 'Audiowide', cursive;
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: 700;
   margin-bottom: 15px;
   color: var(--primary-color);
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+  text-shadow: 0 0 10px rgb(132 17 17);
   letter-spacing: 1px;
 }
 
+
+
 .card-description {
-  font-size: 16px;
-  color: var(--text-color);
+  font-size: 2vw;
+  color: rgb(194, 192, 192);
   margin-bottom: 25px;
   line-height: 1.6;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  text-shadow: 0 0 5px rgba(209, 43, 43, 0.3);
 }
-
 .card-languages {
   display: flex;
   gap: 12px;
@@ -119,9 +121,42 @@ body {
   font-size: 18px;
 }
 
-.html-tag { color: #E44D26; }
-.css-tag { color: #264DE4; }
-.js-tag { color: #F0DB4F; }
+.html-tag { 
+  color: #E44D26; 
+  font-weight: bold;
+}
+.css-tag { 
+  color: #264DE4;
+  font-weight: bold;
+}
+
+.js-tag { 
+  color: #F0DB4F;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+  .card-title {
+    font-size: 1.5rem;
+  }
+  .card-description {
+    font-size: 3.5vw;
+    margin:0px 10px;
+  }
+  .card-languages {
+    display: flex;
+    flex: wrap;
+    gap:0px;
+    margin-bottom: 30px;
+  }
+  .language-tag {
+    padding: 4px 4px;
+    font-size: 3.25vw;
+  }
+}
+
+
+
 
 .card-link {
   display: inline-block;
@@ -165,10 +200,105 @@ body {
 }
 
 @keyframes glow {
-  0%, 100% { text-shadow: 0 0 10px rgba(0, 255, 255, 0.7); }
-  50% { text-shadow: 0 0 20px rgba(0, 255, 255, 1), 0 0 30px rgba(0, 255, 255, 0.5); }
+  0%, 100% { text-shadow: 0 0 10px #4F46E1; }
+  50% { text-shadow: 0 0 20px #4F46E1, 0 0 30px rgba(0, 255, 255, 0.5); }
 }
 
 .card-title {
   animation: glow 3s infinite;
+}
+
+
+/* Styling for Banner */
+@keyframes neon-pulse {
+  0%, 100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #4F46E1, 0 0 35px #4F46E1, 0 0 40px #4F46E1, 0 0 50px #4F46E1, 0 0 75px #4F46E1; }
+  50% { text-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 7px #fff, 0 0 10px #4F46E1, 0 0 17px #4F46E1, 0 0 20px #4F46E1, 0 0 25px #4F46E1, 0 0 37px #4F46E1; }
+}
+
+.neon-text {
+  animation: neon-pulse 1.5s infinite alternate;
+}
+
+.bg-animated {
+  background: linear-gradient(-45deg, #000000, #1a1a1a, #000033, #003366);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 #FBBF24;
+  clip: rect(24px, 550px, 90px, 0);
+  animation: glitch-anim 3s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: -2px 0 #B91C1C;
+  clip: rect(85px, 550px, 140px, 0);
+  animation: glitch-anim 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% { clip: rect(39px, 9999px, 71px, 0); }
+  5% { clip: rect(76px, 9999px, 53px, 0); }
+  10% { clip: rect(42px, 9999px, 16px, 0); }
+  15% { clip: rect(94px, 9999px, 33px, 0); }
+  20% { clip: rect(3px, 9999px, 5px, 0); }
+  25% { clip: rect(21px, 9999px, 100px, 0); }
+  30% { clip: rect(79px, 9999px, 82px, 0); }
+  35% { clip: rect(56px, 9999px, 18px, 0); }
+  40% { clip: rect(6px, 9999px, 38px, 0); }
+  45% { clip: rect(65px, 9999px, 91px, 0); }
+  50% { clip: rect(31px, 9999px, 56px, 0); }
+  55% { clip: rect(88px, 9999px, 71px, 0); }
+  60% { clip: rect(13px, 9999px, 43px, 0); }
+  65% { clip: rect(50px, 9999px, 9px, 0); }
+  70% { clip: rect(27px, 9999px, 68px, 0); }
+  75% { clip: rect(85px, 9999px, 25px, 0); }
+  80% { clip: rect(44px, 9999px, 93px, 0); }
+  85% { clip: rect(19px, 9999px, 39px, 0); }
+  90% { clip: rect(71px, 9999px, 86px, 0); }
+  95% { clip: rect(2px, 9999px, 62px, 0); }
+  100% { clip: rect(54px, 9999px, 47px, 0); }
+}
+
+.hover-3d {
+  transition: transform 0.3s;
+}
+
+.hover-3d:hover {
+  transform: perspective(1000px) rotateX(10deg) rotateY(-10deg) rotateZ(2deg);
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+}
+
+@keyframes float-up {
+  to {
+      transform: translateY(-100vh) rotate(360deg);
+      opacity: 0;
+  }
 }

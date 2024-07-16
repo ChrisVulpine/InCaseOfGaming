@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+
 import { useState } from 'react';
 import { useMutation } from '@apollo/client'; 
 import { LOGIN_USER, ADD_USER } from '../../utils/mutations';
@@ -102,8 +104,9 @@ function LogInSignUp() {
 
     return (
         <>
-            <div className="w-96 backdrop-blur-lg bg-opacity-80 rounded-lg shadow-lg p-5 bg-gray-900 text-white">
+            <div className="w-96 m-auto backdrop-blur-lg bg-opacity-80 rounded-lg shadow-lg p-5 bg-gray-900 text-white">
                 <h2 className="text-2xl font-bold pb-5"></h2>
+
                 <form>
                         <div className="mb-4">
                             <label htmlFor="username" className="block mb-2 text-sm font-medium">Your username</label>
@@ -161,6 +164,11 @@ function LogInSignUp() {
                         </button>
                         </div>
                 </form>
+                <button className="text-white bg-purple-600 hover:bg-purple-700 focus:ring-2 focus:ring-blue-300 font-medium rounded-lg text-sm py-2.5 px-5 w-full sm:w-auto">
+                    <NavLink to="/">
+                    Nevermind, Go Back
+                    </NavLink>
+                </button>
             </div>
         </>
     );
