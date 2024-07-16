@@ -1,8 +1,11 @@
-import React from 'react';
+// add to the homepage
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import Logo from './../images/InCaseOfGaming.png';
 //for signin modal
 import { useState } from 'react';
+// add to the homepage
+import fetchGameDetails from '../../utils/gameDataFetch';
 
 
 function NavSideBar() {
