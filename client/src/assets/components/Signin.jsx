@@ -4,11 +4,16 @@ import { useMutation } from '@apollo/client';
 import { LOGIN_USER, ADD_USER } from '../../utils/mutations';
 
 
+
+//========================================================================
+// Functions to add to Login and Add User using mutations -cdl
+//========================================================================
+
 function LogInSignUp() {
     const [formState, setFormState] = useState({ username: '', email: '', password: '' });
     const [login] = useMutation(LOGIN_USER);
     const [addUser] = useMutation(ADD_USER);
-//Just FYI(Previous code was for a single button. The new code is for two separate buttons - a sign up and a login button.)
+    //Just FYI(Previous code was for a single button. The new code is for two separate buttons - a sign up and a login button.)
 
     //updates form state after user input
     const handleChange = (event) => {
@@ -18,7 +23,7 @@ function LogInSignUp() {
         setFormState(prevState => ({ ...prevState, [name]: value }));
        };
 
-    //checks form input
+    //============= Validates Input Form =================//
     const validateForm = () => {
         console.log("validateForm called");
 
@@ -42,7 +47,10 @@ function LogInSignUp() {
         return true; // Form is valid
     };
 
-    //handles login submission
+//========================================================================
+// Function to handle login using mutations -cdl
+//========================================================================
+
     const handleLogin = async (event) => {
         event.preventDefault();
 
@@ -51,9 +59,7 @@ function LogInSignUp() {
 
 
         if (!validateForm()) return; //if validateForm test fails
-        // insert code to handle login, e.g., sending formState to a server for authentication
         console.log('Logging in with:', formState);
-        //insert login logic
 
         try {
             const { data } = await login({
@@ -65,32 +71,16 @@ function LogInSignUp() {
         }
     };
 
+//========================================================================
+// Function to handle sign up using mutations -cdl
+//========================================================================
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //handles signup submission
     const handleSignup = async (event) => {
         console.log("handleSignup called");
         
         event.preventDefault();
 
         if (!validateForm()) return;  //if validateForm test fails
-        // insert code to handle signup, e.g., sending formState to a server for account creation
         console.log('Signing up with:', formState);
 
         //insert signup logic
@@ -108,7 +98,7 @@ function LogInSignUp() {
 //     console.log('Response from server:', data);
 // };
         
-
+//========================================================================
 
     return (
         <>

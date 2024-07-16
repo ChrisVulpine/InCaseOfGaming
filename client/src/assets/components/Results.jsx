@@ -1,13 +1,67 @@
 import React, { useEffect, useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { ADD_LIKED_GAMES, ADD_WISHLIST } from '../../utils/mutations';
 
 function Results(props) {
   //const for array of 16 games with names, images, and descriptions
 
 
+//========================================================================
+// Functions to add to favorites and wishlist using mutations -cdl
+//========================================================================
+
+  // Variables of mutations imported above
+  const [addLikedGames] = useMutation(ADD_LIKED_GAMES);
+  const [addWishlist] = useMutation(ADD_WISHLIST);
+
+  // Add to Favorites Function
+  const handleFavoriteClick = async (gameId) => {
+    const userId = localStorage.getItem('userId');
+
+    if(!userId) {
+      alert('Please log in to add games to your favorites!');
+      return;
+    }
+
+    try {
+      const { data } = await addLikedGames({
+        variables: { userId, gameIds: [gameId] }, 
+      });
+
+      console.log('Game added to favorites:', data);
+
+    } catch (error) {
+      console.error('Error adding game to favorites:', error);
+    }
+  };
+
+   // Add to Wishlist Function
+  const handleAddToWishlist = async (gameId) => {
+    const userId = localStorage.getItem('userId');
+
+    if (!userId) {
+      alert('You must be logged in to add a game to your wishlist');
+      return;
+    }
+
+    try {
+      const { data } = await addWishlist({
+        variables: { userId, gameIds: [gameId] },
+      });
+      console.log('Game added to wishlist:', data);
+    } catch (error) {
+      console.error('Error adding game to wishlist:', error);
+    }
+  };
+
+//========================================================================
+
 
     //"infinite" scroll
     // const [count, setCount] = useState(5);
     // const [isFetching, setIsFetching] = useState(false); // maybe use for fetching/loading purposes
+
+
     const newCards = [];
 
  
@@ -20,10 +74,10 @@ function Results(props) {
               <h1 class="text-white mt-2 text-xs md:text-xl mb-5 transform  translate-y-10 uppercase group-hover:translate-y-0 duration-300 group-hover:text-indigo-400"> {game.name} </h1>
               <p class="opacity-0 text-white text-xs md:text-xl group-hover:opacity-80 transform duration-500 "> {game.description} </p>
                 <div class="glex-wrap">
-                  <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 text-xs font-bold rounded-l">
+                  <button  onClick={() => handleFavoriteClick(game._id)} class="bg-gray-300 hover:bg-gray-400 text-gray-800 text-xs font-bold rounded-l">
                     Favorite
                   </button>
-                  <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 text-xs font-bold rounded-r">
+                  <button  onClick={() => handleAddToWishlist(game._id)} class="bg-gray-300 hover:bg-gray-400 text-gray-800 text-xs font-bold rounded-r">
                     Wishlist
                   </button>
                 </div>
