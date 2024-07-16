@@ -5,7 +5,6 @@ function GamePage() {
 
     
     return (
-
             <div class="card animate__animated animate__fadeInUp">
                 <img src="https://picsum.photos/350/200" alt="Project Cover" class="card-image" />
                 <div class="card-content">
@@ -22,7 +21,6 @@ function GamePage() {
                   </button>
                 </div>
             </div>
-            
     )
 }
 

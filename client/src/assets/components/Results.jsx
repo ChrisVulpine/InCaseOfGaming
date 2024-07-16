@@ -68,6 +68,8 @@ function Results(props) {
 
     props.games.map((game, index) => {
       newCards.push(
+
+        //can we also do an onClick event to navigate to the card page?
         <article key={index} class="mx-0.5 md:mx-.5 shadow-xl bg-cover bg-center max-h-50 lg:max-h-150 relative border-8 border-black  transform duration-500 hover:-translate-y-12 group">
           <div style={{ zIndex: index, backgroundImage: `url(${game.image})` }} class="bg-white relative h-full group-hover:bg-opacity-0 lg:min-h-150  flex flex-wrap flex-col pt-[5rem] sm:pt-[10rem] hover:bg-opacity-75 transform duration-300">
             <div class=" bg-black   p-.5 h-full justify-end flex flex-col">
