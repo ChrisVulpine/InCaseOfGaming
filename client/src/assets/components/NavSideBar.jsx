@@ -18,9 +18,9 @@ function NavSideBar() {
     return (
         <div class="isolate object-left items-center max-w-dvh md:w-100 2xl:w-screen h-60 overflow-hidden text-gray-400 bg-slate-900" style={headerIndex}>
             <div class="grid grid-cols-4 grid-rows-2 h-60 items-stretch justify-center sm:ml-0 md:ml-72 lg:ml-64 p-6">
-                <div class="col-start-2 md:col-start-1 col-end-4 text-3xl md:text-6xl lg:text-8xl text-center">
-                    <div class="text-center z-10">
-                        <h1 class="font-bold mb-4 text-white neon-text glitch hover-3d" data-text="CYBERSPACE">CYBERSPACE</h1>
+                <div class="h-20 lg:h-32 border-8 border-[#A82121] rounded-lg bg-[#610102] col-start-2 md:col-start-1 col-end-4 text-3xl md:text-6xl lg:5xl xl:text-7xl 2xl:text-8xl text-center">
+                    <div class="text-center text-lg md:text-4xl lg:text-6xl xl:text-8xl z-10">
+                        <h1 class="font-bold mb-4 text-white neon-text glitch hover-3d" data-text="In Case Of Gaming">In Case Of Gaming</h1>
                     </div>
                 </div>
                 <div class="col-start-4 self-center text-xs md:text-3xl rounded-md border border-transparent bg-indigo-600 px-4 py-2 font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">

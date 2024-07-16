@@ -82,7 +82,7 @@ function Results(props) {
               <h1 class="text-white mt-2 text-xs md:text-xl mb-5 transform  translate-y-10 uppercase group-hover:translate-y-0 duration-300 group-hover:text-indigo-400"> {game.name} </h1>
               <div class=""> {/* may need class="flex-wrap" */}
                 <p class="opacity-0 text-white text-xs md:text-xl group-hover:opacity-80 transform duration-500 "> {game.description}
-                  <div class="relative inline-flex group">
+                  <div class="relative flex-wrap group">
                     <div class="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt">
                     </div>
                     <button onClick={() => handleOpenCard(game._id)} class="relative inline-flex items-center justify-center px-2 py-2 text-md font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
@@ -90,10 +90,10 @@ function Results(props) {
                     </button>
                   </div>
                   <div>
-                    <button onClick={() => handleFavoriteClick(game._id)} class="bg-gray-300 hover:bg-gray-400 text-gray-800 text-xs font-bold rounded-l">
+                    <button onClick={() => handleFavoriteClick(game._id)} class="language-tag html-tag"><i class="fa-sharp-duotone fa-solid fa-fire"></i>
                       Favorite
                     </button>
-                    <button  onClick={() => handleAddToWishlist(game._id)} class="bg-gray-300 hover:bg-gray-400 text-gray-800 text-xs font-bold rounded-r">
+                    <button  onClick={() => handleAddToWishlist(game._id)} class="language-tag css-tag"><i class="fa-sharp-duotone fa-solid fa-bookmark"></i>
                       Wishlist
                     </button>
                   </div>
@@ -128,7 +128,7 @@ function Results(props) {
 
   return (
 
-    <div className="bg-white rounded-[50px] ml-20 md:ml-48 lg:ml-52 xl:ml-42 max-w-screen-xl 2xl:max-w-screen-2xl px-8 md:px-12 lg:px-0 mx-auto mb-12 lg:mb-24 space-y-12 flex flex-col justify-center lg:justify-left">
+    <div className="bg-white rounded-[50px] ml-16 md:ml-48 lg:ml-52 xl:ml-42 max-w-screen-xl 2xl:max-w-screen-2xl px-8 md:px-12 lg:px-0 mx-auto mb-12 lg:mb-24 space-y-12 flex flex-col justify-center lg:justify-left">
   {/* <!-- Starts component --> */}
         <div className="grid grid-cols-3  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:gap-2 content-center mt-12 list-none max-w-5xl xl:max-w-none mx-auto lg:mx-0 lg:ml-20" role="list"> {/* change grid-cols-n to change overflow */}
         {/* <!---

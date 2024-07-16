@@ -34,7 +34,8 @@ const router = createBrowserRouter([
         element: <LikedGames />
       },
       {
-        path: "/game/:GameId",
+        path: "/game", //change to path: "/game/:GameId", when ready
+
         element: <GamePage />
       }
     ]
