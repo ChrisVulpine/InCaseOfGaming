@@ -19,8 +19,6 @@ function NavSideBar() {
         zIndex:1
     }
 
-    //open Signin Modal
-    const  [isModalVisible, setIsModalVisible] = useState(false)
 
 
 
