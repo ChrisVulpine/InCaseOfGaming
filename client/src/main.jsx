@@ -7,6 +7,7 @@ import Signin from './assets/components/Signin';
 import Home from './assets/components/Home';
 import Wishlist from './assets/components/Wishlist';
 import LikedGames from './assets/components/LikedGames';
+import GamePage from './assets/components/GamePage';
 
 
 
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/likedGames",
         element: <LikedGames />
+      },
+      {
+        path: "/game",
+        element: <GamePage />
       }
     ]
   }

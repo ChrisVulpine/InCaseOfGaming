@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Logo from './../images/InCaseOfGaming.png';
-//for signin modal
 import { useState } from 'react';
 
 
@@ -15,10 +14,6 @@ function NavSideBar() {
         zIndex:1
     }
 
-    //open Signin Modal
-    const  [isModalVisible, setIsModalVisible] = useState(false)
-
-
 
     return (
         <div class="isolate object-left items-center max-w-dvh md:w-100 2xl:w-screen h-60 overflow-hidden text-gray-400 bg-slate-900" style={headerIndex}>
@@ -26,8 +21,9 @@ function NavSideBar() {
                 <div class="col-start-2 md:col-start-1 col-end-4 text-3xl md:text-7xl lg:text-8xl text-center">
                     In Case Of Gaming
                 </div>
-                <div class="col-start-4 self-center text-xsmd:text-4xl rounded-md border border-transparent bg-indigo-600 px-4 py-2 font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                    <button type onClick="" >Log In</button>
+                <div class="col-start-4 self-center text-xs md:text-3xl rounded-md border border-transparent bg-indigo-600 px-4 py-2 font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    <NavLink to="/login">Log In
+                    </NavLink>
                 </div>
                 <div class="col-start-2 col-end-4 place-self-end w-full max-w-lg">
                     <form class="mt-5 sm:flex sm:items-center">
