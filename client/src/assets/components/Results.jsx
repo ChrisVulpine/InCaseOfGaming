@@ -82,7 +82,7 @@ const handleOpenCard = (game) => {
             <div className=" bg-black   p-.5 h-full justify-end flex flex-col">
               <h1 className="text-white mt-2 text-xs md:text-xl mb-5 transform  translate-y-10 uppercase group-hover:translate-y-0 duration-300 group-hover:text-indigo-400"> {game.name} </h1>
               <div className=""> {/* may need class="flex-wrap" */}
-                <p className="opacity-0 text-white text-xs md:text-xl group-hover:opacity-80 transform duration-500 "> {game.description}
+                <div className="opacity-0 text-white text-xs md:text-xl group-hover:opacity-80 transform duration-500 "> {game.description}
                   <div className="relative flex-wrap group">
                     <div className="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt">
                     </div>
@@ -98,7 +98,7 @@ const handleOpenCard = (game) => {
                       Wishlist
                     </button>
                   </div>
-                </p>
+                </div>
               </div>            
             </div>
           </div>
