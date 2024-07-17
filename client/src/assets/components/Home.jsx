@@ -2,7 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import Nav from './NavSideBar'
 import Results from './Results'
-import { QUERY_GAMES } from '../../utils/queries';
+// import { QUERY_GAMES } from '../../utils/queries';
+import fetchGameDetails from '../../utils/gameDataFetch';
+
 
 function Home() {
 
