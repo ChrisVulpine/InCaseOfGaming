@@ -1,6 +1,11 @@
 import axios from 'axios';
 
 async function fetchGameDetails(searchValue) {
+
+    if (!searchValue) {
+        console.error('Please enter a search value');
+        return;
+    }
     
     const options = {
         method: 'GET',
