@@ -1,21 +1,28 @@
 import React from 'react';
-import Nav from './NavSideBar'
+import { useLocation } from 'react-router-dom';
 
 function GamePage() {
+  const location = useLocation();
+  const gameDetails = location.state?.gameDetails;
+  console.log(gameDetails)
+
+  if (!gameDetails) {
+    return <div>Loading...</div>; // Or handle the case when gameDetails is not passed
+  }
+
   return (
-    <div class="card animate__animated animate__fadeInUp">
-      <img src="https://picsum.photos/350/200" alt="Project Cover" class="card-image" />
-      <div class="card-content">
-        <h2 class="card-title animate__animated animate__fadeInDown">Awesome Project</h2>
-        <p class="card-description animate__animated animate__fadeIn">Experience cutting-edge technology and stunning design in this rewwwwwww wwwwwwwww wwwwwwwwwfdsasfdsfsdf sdf sd fds fdsfsdfsd fdsfdsfdsfds fdsfdsfdsfsfww wwwwwww wwwwwww wwwwwwwwww wwww wwww wwwww www wwwww wwww wwww wwww wwwww www wwwvo lutionary project. Prepare to be amazed!</p>
-        <div class="card-languages animate__animated animate__fadeIn">
-          <span class="language-tag html-tag"><i class="fa-sharp-duotone fa-solid fa-fire"></i>Favorite</span>
-          <span class="language-tag css-tag"><i class="fa-sharp-duotone fa-solid fa-bookmark"></i>Wishlist</span> {/*also these icons to decide: <i class="fa-sharp-duotone fa-solid fa-moon-stars"></i> or <i class="fa-sharp-duotone fa-solid fa-stars"></i>*/}
-          <span class="language-tag js-tag"><i class="fa-sharp-duotone fa-solid fa-coins"></i> STEAM price</span>
+    <div className="card animate__animated animate__fadeInUp">
+      <img href={gameDetails.image} alt="Project Cover" className="card-image" /> {/* not showing the image currently */}
+      <div className="card-content">
+        <h2 className="card-title animate__animated animate__fadeInDown">{gameDetails.name}</h2>
+        <p className="card-description animate__animated animate__fadeIn">{gameDetails.description}</p>
+        <div className="card-languages animate__animated animate__fadeIn">
+          <span className="language-tag html-tag"><i className="fa-sharp-duotone fa-solid fa-fire"></i>Favorite</span>
+          <span className="language-tag css-tag"><i className="fa-sharp-duotone fa-solid fa-bookmark"></i>Wishlist</span>
+          <span className="language-tag js-tag"><i className="fa-sharp-duotone fa-solid fa-coins"></i> STEAM price {gameDetails.price}</span>
         </div>
       </div>
     </div>
   );
-};
-
+}
 export default GamePage;
