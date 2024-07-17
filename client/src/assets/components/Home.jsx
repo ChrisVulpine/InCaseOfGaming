@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Nav from './NavSideBar'
 import Results from './Results'
 import { QUERY_GAMES } from '../../utils/queries';
@@ -10,15 +10,15 @@ function Home() {
 
     const handleSearchSubmit = async (e) => {
         e.preventDefault();
-        const details = await fetchGameDetails(searchQuery);
-        console.log(details);
+        const games = await fetchGameDetails(searchQuery);
+        console.log(games);
     };
     
 
     useEffect(() => {
         const fetchDetails = async () => {
-            const details = await fetchGameDetails();
-            console.log(details);
+            const games = await fetchGameDetails();
+            console.log(games);
         };
         fetchDetails();
     }, []);
@@ -53,8 +53,12 @@ function Home() {
     return (
 
         <>
+
+            {/* <Header class="z-20"/> */}
+            <Nav style={navIndex}/>
+
         {/* moved the search bar to the homepage */}
-           <form className="mt-5 sm:flex sm:items-center" onSubmit={handleSearchSubmit}>
+        <form className="m-5 mt--36 ml-36 md:ml-72 sm:flex sm:items-center" onSubmit={handleSearchSubmit}>
                         <input 
                         id="q" 
                         name="q" 
@@ -69,8 +73,6 @@ function Home() {
                             Search
                         </button>
                     </form>
-            {/* <Header class="z-20"/> */}
-            <Nav style={navIndex}/>
 
             <Results games={games} style={resultsIndex}/>
 
