@@ -12,7 +12,7 @@ function GamePage() {
 
   return (
     <div className="card animate__animated animate__fadeInUp">
-      <img href={gameDetails.image} alt="Project Cover" className="card-image" /> {/* not showing the image currently */}
+      <img src={gameDetails.img} alt="Project Cover" className="card-image" /> {/* not showing the image currently */}
       <div className="card-content">
         <h2 className="card-title animate__animated animate__fadeInDown">{gameDetails.name}</h2>
         <p className="card-description animate__animated animate__fadeIn">{gameDetails.description}</p>
