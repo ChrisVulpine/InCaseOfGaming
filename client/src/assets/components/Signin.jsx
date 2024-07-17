@@ -1,9 +1,10 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { useState } from 'react';
 import { useMutation } from '@apollo/client'; 
 import { LOGIN_USER, ADD_USER } from '../../utils/mutations';
+
 
 
 
@@ -16,7 +17,7 @@ function LogInSignUp() {
     const [login] = useMutation(LOGIN_USER);
     const [addUser] = useMutation(ADD_USER);
     //Just FYI(Previous code was for a single button. The new code is for two separate buttons - a sign up and a login button.)
-
+    const navigate = useNavigate();
     //updates form state after user input
     const handleChange = (event) => {
         // console.log("handleChange called");
@@ -68,6 +69,26 @@ function LogInSignUp() {
                 variables: { ...formState },
             });
             console.log('Login successful:', data);
+            // Assuming `data` includes a `token` and `userId`
+            const token = data.login.token; // Get the auth token
+            const userId = data.login.user._id; // Get the user ID
+
+        // const { token, userId } = data;
+            // const data = { token, userId}
+
+        // Store the token in localStorage or another storage mechanism
+        localStorage.setItem('authToken', token);
+        localStorage.setItem('userId', userId);
+
+        console.log('Token stored:', token)
+        console.log('userId stored:', userId)
+
+
+
+
+
+
+            navigate('/'); // Redirect to home page after login
         } catch (error) {
             console.error('Error logging in:', error);
         }
@@ -91,6 +112,7 @@ function LogInSignUp() {
                 variables: { ...formState },
             });
             console.log('Signup successful:', data);
+            navigate('/'); // Redirect to home page after login
         } catch (error) {
             console.error('Error signing up:', error);
         }

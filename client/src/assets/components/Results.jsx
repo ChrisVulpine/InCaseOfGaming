@@ -14,18 +14,38 @@ function Results(props) {
   const [addLikedGames] = useMutation(ADD_LIKED_GAMES);
   const [addWishlist] = useMutation(ADD_WISHLIST);
 
-  // Add to Favorites Function
-  const handleFavoriteClick = async (gameId) => {
-    const userId = localStorage.getItem('userId');
+  // Function to get userId from localStorage
+  const getUserId = () => localStorage.getItem('userId');
+  console.log('userId:', getUserId());
 
+
+
+  
+  // Add to Favorites Function
+  const handleFavoriteClick = async (game) => {
+    const userId = getUserId();
+    
+    
     if(!userId) {
       alert('Please log in to add games to your favorites!');
       return;
     }
+    
+    props.games.forEach((game, index) => {
+      console.log(`Opening card ${index} for game ${game._id}`, 'Game Name:', game.name);
+      
+    });
+
+    // console.log('userId:', userId); 
+    // console.log('gameId:', game.id); 
 
     try {
+
+      // console.log('userId 1:', userId);
+      // console.log('gameIds 1:', gameId);
+
       const { data } = await addLikedGames({
-        variables: { userId, gameIds: [gameId] }, 
+        variables: { userId, gameIds: [game._id] }, 
       });
 
       console.log('Game added to favorites:', data);
@@ -35,8 +55,15 @@ function Results(props) {
     }
   };
 
+
+
+
+
+
+
+
    // Add to Wishlist Function
-  const handleAddToWishlist = async (gameId) => {
+  const handleAddToWishlist = async (game) => {
     const userId = localStorage.getItem('userId');
 
     if (!userId) {
@@ -46,7 +73,7 @@ function Results(props) {
 
     try {
       const { data } = await addWishlist({
-        variables: { userId, gameIds: [gameId] },
+        variables: { userId, gameIds: [game._id] },
       });
       console.log('Game added to wishlist:', data);
     } catch (error) {
@@ -90,10 +117,10 @@ function Results(props) {
                     </button>
                   </div>
                   <div>
-                    <button onClick={() => handleFavoriteClick(game._id)} className="language-tag html-tag"><i className="fa-sharp-duotone fa-solid fa-fire"></i>
+                    <button onClick={() => handleFavoriteClick(game.index, game._id,)} className="language-tag html-tag"><i className="fa-sharp-duotone fa-solid fa-fire"></i>
                       Favorite
                     </button>
-                    <button  onClick={() => handleAddToWishlist(game._id)} className="language-tag css-tag"><i className="fa-sharp-duotone fa-solid fa-bookmark"></i>
+                    <button  onClick={() => handleAddToWishlist(game)} className="language-tag css-tag"><i className="fa-sharp-duotone fa-solid fa-bookmark"></i>
                       Wishlist
                     </button>
                   </div>
