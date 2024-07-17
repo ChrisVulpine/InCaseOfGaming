@@ -76,24 +76,24 @@ function Results(props) {
     const newCards = [];
     props.games.map((game, index) => {
       newCards.push(
-        <article key={index} class="mx-0.5 md:mx-.5 shadow-xl bg-cover bg-center max-h-50 lg:max-h-150 relative border-8 border-black rounded-lg transform duration-500 hover:-translate-y-12 group">
-          <div style={{ zIndex: index, backgroundImage: `url(${game.image})` }} class="bg-FBBF24 relative h-full group-hover:bg-opacity-0 lg:min-h-150 rounded-sm flex flex-wrap flex-col pt-[5rem] sm:pt-[10rem] hover:bg-opacity-75 transform duration-300">
-            <div class=" bg-black   p-.5 h-full justify-end flex flex-col">
-              <h1 class="text-white mt-2 text-xs md:text-xl mb-5 transform  translate-y-10 uppercase group-hover:translate-y-0 duration-300 group-hover:text-indigo-400"> {game.name} </h1>
-              <div class=""> {/* may need class="flex-wrap" */}
-                <p class="opacity-0 text-white text-xs md:text-xl group-hover:opacity-80 transform duration-500 "> {game.description}
-                  <div class="relative flex-wrap group">
-                    <div class="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt">
+        <article key={index} className="mx-0.5 md:mx-.5 shadow-xl bg-cover bg-center max-h-50 lg:max-h-150 relative border-8 border-black rounded-lg transform duration-500 hover:-translate-y-12 group">
+          <div style={{ zIndex: index, backgroundImage: `url(${game.img})` }} className="bg-FBBF24 relative h-full group-hover:bg-opacity-0 lg:min-h-150 rounded-sm flex flex-wrap flex-col pt-[5rem] sm:pt-[10rem] hover:bg-opacity-75 transform duration-300">
+            <div className=" bg-black   p-.5 h-full justify-end flex flex-col">
+              <h1 className="text-white mt-2 text-xs md:text-xl mb-5 transform  translate-y-10 uppercase group-hover:translate-y-0 duration-300 group-hover:text-indigo-400"> {game.name} </h1>
+              <div className=""> {/* may need class="flex-wrap" */}
+                <p className="opacity-0 text-white text-xs md:text-xl group-hover:opacity-80 transform duration-500 "> {game.description}
+                  <div className="relative flex-wrap group">
+                    <div className="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt">
                     </div>
-                    <button onClick={() => handleOpenCard(game._id)} class="relative inline-flex items-center justify-center px-2 py-2 text-md font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
+                    <button onClick={() => handleOpenCard(game._id)} className="relative inline-flex items-center justify-center px-2 py-2 text-md font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
                       See More
                     </button>
                   </div>
                   <div>
-                    <button onClick={() => handleFavoriteClick(game._id)} class="language-tag html-tag"><i class="fa-sharp-duotone fa-solid fa-fire"></i>
+                    <button onClick={() => handleFavoriteClick(game._id)} className="language-tag html-tag"><i className="fa-sharp-duotone fa-solid fa-fire"></i>
                       Favorite
                     </button>
-                    <button  onClick={() => handleAddToWishlist(game._id)} class="language-tag css-tag"><i class="fa-sharp-duotone fa-solid fa-bookmark"></i>
+                    <button  onClick={() => handleAddToWishlist(game._id)} className="language-tag css-tag"><i className="fa-sharp-duotone fa-solid fa-bookmark"></i>
                       Wishlist
                     </button>
                   </div>
