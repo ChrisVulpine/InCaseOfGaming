@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useNavigate } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_LIKED_GAMES, ADD_WISHLIST } from '../../utils/mutations';
 
@@ -91,11 +92,11 @@ function Results(props) {
 //========================================================================
 // Function to navigate to the card page -kat  (it breaks the page currently) May need to make  lines 67-106 a separate component
 //========================================================================
-// const navigate = useNavigate(); // Step 2
+const navigate = useNavigate();
 
-// const handleOpenCard = (gameId) => {
-//   navigate(`/game/${gameId}`); // Step 3
-// };
+const handleOpenCard = (game) => {
+  navigate(`/game/${game.id}`, { state: { gameDetails: game } });
+};
 
 //========================================================================
 // Function to create a card for each game -kat
@@ -112,15 +113,15 @@ function Results(props) {
                   <div className="relative flex-wrap group">
                     <div className="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt">
                     </div>
-                    <button onClick={() => handleOpenCard(game._id)} className="relative inline-flex items-center justify-center px-2 py-2 text-md font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
+                    <button onClick={() => handleOpenCard(game, index)} className="relative inline-flex items-center justify-center px-2 py-2 text-md font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
                       See More
                     </button>
                   </div>
                   <div>
-                    <button onClick={() => handleFavoriteClick(game.index, game._id,)} className="language-tag html-tag"><i className="fa-sharp-duotone fa-solid fa-fire"></i>
+                    <button onClick={() => handleFavoriteClick(game, index)} className="language-tag html-tag"><i className="fa-sharp-duotone fa-solid fa-fire"></i>
                       Favorite
                     </button>
-                    <button  onClick={() => handleAddToWishlist(game)} className="language-tag css-tag"><i className="fa-sharp-duotone fa-solid fa-bookmark"></i>
+                    <button  onClick={() => handleAddToWishlist(game, index)} className="language-tag css-tag"><i className="fa-sharp-duotone fa-solid fa-bookmark"></i>
                       Wishlist
                     </button>
                   </div>
