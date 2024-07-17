@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useNavigate } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_LIKED_GAMES, ADD_WISHLIST } from '../../utils/mutations';
 
@@ -61,26 +61,44 @@ function Results(props) {
     // const [count, setCount] = useState(5);
     // const [isFetching, setIsFetching] = useState(false); // maybe use for fetching/loading purposes
 
+//========================================================================
+// Function to navigate to the card page -kat  (it breaks the page currently) May need to make  lines 67-106 a separate component
+//========================================================================
+// const navigate = useNavigate(); // Step 2
 
+// const handleOpenCard = (gameId) => {
+//   navigate(`/game/${gameId}`); // Step 3
+// };
+
+//========================================================================
+// Function to create a card for each game -kat
+//========================================================================
     const newCards = [];
-
- 
-
     props.games.map((game, index) => {
       newCards.push(
-        <article key={index} class="mx-0.5 md:mx-.5 shadow-xl bg-cover bg-center max-h-50 lg:max-h-150 relative border-8 border-black  transform duration-500 hover:-translate-y-12 group">
-          <div style={{ zIndex: index, backgroundImage: `url(${game.image})` }} class="bg-white relative h-full group-hover:bg-opacity-0 lg:min-h-150  flex flex-wrap flex-col pt-[5rem] sm:pt-[10rem] hover:bg-opacity-75 transform duration-300">
+        <article key={index} class="mx-0.5 md:mx-.5 shadow-xl bg-cover bg-center max-h-50 lg:max-h-150 relative border-8 border-black rounded-lg transform duration-500 hover:-translate-y-12 group">
+          <div style={{ zIndex: index, backgroundImage: `url(${game.image})` }} class="bg-FBBF24 relative h-full group-hover:bg-opacity-0 lg:min-h-150 rounded-sm flex flex-wrap flex-col pt-[5rem] sm:pt-[10rem] hover:bg-opacity-75 transform duration-300">
             <div class=" bg-black   p-.5 h-full justify-end flex flex-col">
               <h1 class="text-white mt-2 text-xs md:text-xl mb-5 transform  translate-y-10 uppercase group-hover:translate-y-0 duration-300 group-hover:text-indigo-400"> {game.name} </h1>
-              <p class="opacity-0 text-white text-xs md:text-xl group-hover:opacity-80 transform duration-500 "> {game.description} </p>
-                <div class="glex-wrap">
-                  <button  onClick={() => handleFavoriteClick(game._id)} class="bg-gray-300 hover:bg-gray-400 text-gray-800 text-xs font-bold rounded-l">
-                    Favorite
-                  </button>
-                  <button  onClick={() => handleAddToWishlist(game._id)} class="bg-gray-300 hover:bg-gray-400 text-gray-800 text-xs font-bold rounded-r">
-                    Wishlist
-                  </button>
-                </div>
+              <div class=""> {/* may need class="flex-wrap" */}
+                <p class="opacity-0 text-white text-xs md:text-xl group-hover:opacity-80 transform duration-500 "> {game.description}
+                  <div class="relative flex-wrap group">
+                    <div class="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt">
+                    </div>
+                    <button onClick={() => handleOpenCard(game._id)} class="relative inline-flex items-center justify-center px-2 py-2 text-md font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
+                      See More
+                    </button>
+                  </div>
+                  <div>
+                    <button onClick={() => handleFavoriteClick(game._id)} class="language-tag html-tag"><i class="fa-sharp-duotone fa-solid fa-fire"></i>
+                      Favorite
+                    </button>
+                    <button  onClick={() => handleAddToWishlist(game._id)} class="language-tag css-tag"><i class="fa-sharp-duotone fa-solid fa-bookmark"></i>
+                      Wishlist
+                    </button>
+                  </div>
+                </p>
+              </div>            
             </div>
           </div>
         </article>,
@@ -88,7 +106,8 @@ function Results(props) {
     });
 
 
-      
+
+
       //can use if we want more results to populate upon scrolling
       // useEffect(() => {
       //   const onScrollEnd = () => {
@@ -109,7 +128,7 @@ function Results(props) {
 
   return (
 
-    <div className="bg-white ml-20 md:ml-48 lg:ml-52 xl:ml-42 max-w-screen-xl 2xl:max-w-screen-2xl px-8 md:px-12 lg:px-0 mx-auto mb-12 lg:mb-24 space-y-12 flex flex-col justify-center lg:justify-left">
+    <div className="bg-white rounded-[50px] ml-16 md:ml-48 lg:ml-52 xl:ml-42 max-w-screen-xl 2xl:max-w-screen-2xl px-8 md:px-12 lg:px-0 mx-auto mb-12 lg:mb-24 space-y-12 flex flex-col justify-center lg:justify-left">
   {/* <!-- Starts component --> */}
         <div className="grid grid-cols-3  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:gap-2 content-center mt-12 list-none max-w-5xl xl:max-w-none mx-auto lg:mx-0 lg:ml-20" role="list"> {/* change grid-cols-n to change overflow */}
         {/* <!---
