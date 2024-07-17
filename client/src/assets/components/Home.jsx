@@ -1,4 +1,5 @@
-import React from 'react';
+// possibly comment out importing react and useEffect
+import React, { useState, useEffect } from 'react';
 import Nav from './NavSideBar'
 import Results from './Results'
 import { QUERY_GAMES } from '../../utils/queries';
