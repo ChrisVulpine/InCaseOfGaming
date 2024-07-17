@@ -6,16 +6,18 @@ import { useState } from 'react';
 // add to the homepage
 import fetchGameDetails from '../../utils/gameDataFetch';
 
+import Auth from '../../utils/auth';
+
 
 function NavSideBar() {
-  
+
 
     const headerIndex = {
-        zIndex:0
+        zIndex: 0
     }
 
     const navIndex = {
-        zIndex:1
+        zIndex: 1
     }
 
 
@@ -28,18 +30,23 @@ function NavSideBar() {
                     </div>
                 </div>
                 <div class="col-start-4 self-center text-xs md:text-3xl rounded-md border border-transparent bg-indigo-600 px-4 py-2 font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                    <NavLink to="/login">Log In
-                    </NavLink>
+                    {
+                        Auth.loggedIn() ? (
+                            <NavLink to="#" className="text-white" onClick={() => {Auth.logout()}}>Logout</NavLink>
+                        ) : (
+                            <NavLink to="/login" className="text-white">Login</NavLink>
+                        )
+                    }
 
                 </div>
                 <div className="col-start-2 col-end-4 place-self-end w-full max-w-lg">
-             
+
                 </div>
             </div>
             <div style={navIndex} className="fixed flex-col items-center -mt-48 w-24 md:w-52 lg:w-64 h-dvh overflow-hidden text-gray-400 bg-slate-900 ">
                 <div className="flex flex-col items-center w-full mt-3 border-b ml-2 border-gray-700">
                     <NavLink to="/" className={({ isActive }) => isActive ? ' sm:px-2 md:px-8 mt-2 rounded hover:bg-gray-700 hover:text-gray-300' : 'sm:px-2 md:px-8 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300'}>
-                    <img src={Logo} ></img>
+                        <img src={Logo} ></img>
                     </NavLink>
                 </div>
                 <div className="w-full px-2">
@@ -48,14 +55,21 @@ function NavSideBar() {
                             {/*can insert small icon here*/}
                             <span className="ml-2 text-sm md:text-lg lg:text-xl font-medium">Search</span>
                         </NavLink>
-                        <NavLink to="/LikedGames" className={({ isActive }) => isActive ? 'active flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300' : 'flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300'}>
-                            {/*can insert small icon here*/}
-                            <span className="ml-2 text-sm md:text-lg lg:text-xl font-medium">Favorites</span>
-                        </NavLink>
-                        <NavLink to="/Wishlist" className={({ isActive }) => isActive ? 'active flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300' : 'flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300'}>
-                            {/*can insert small icon here*/}
-                            <span className="ml-2 text-sm md:text-lg lg:text-xl font-medium">Wishlist</span>
-                        </NavLink>
+                        {
+                            Auth.loggedIn() ? (
+                                <>
+                                    <NavLink to="/LikedGames" className={({ isActive }) => isActive ? 'active flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300' : 'flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300'}>
+                                        {/*can insert small icon here*/}
+                                        <span className="ml-2 text-sm md:text-lg lg:text-xl font-medium">Favorites</span>
+                                    </NavLink>
+                                    <NavLink to="/Wishlist" className={({ isActive }) => isActive ? 'active flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300' : 'flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300'}>
+                                        {/*can insert small icon here*/}
+                                        <span className="ml-2 text-sm md:text-lg lg:text-xl font-medium">Wishlist</span>
+                                    </NavLink>
+                                </>
+
+                            ) : (null)
+                        }
 
                     </div>
                 </div>
@@ -76,4 +90,4 @@ function NavSideBar() {
 
 export default NavSideBar;
 
-{/* <a class="flex items-center w-full h-12 px-3 mt-2 py-0 md:py-10 text-gray-200 bg-gray-700 rounded" href="#"> */}
+{/* <a class="flex items-center w-full h-12 px-3 mt-2 py-0 md:py-10 text-gray-200 bg-gray-700 rounded" href="#"> */ }

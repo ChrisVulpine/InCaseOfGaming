@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { useMutation } from '@apollo/client'; 
 import { LOGIN_USER, ADD_USER } from '../../utils/mutations';
 
+import Auth from '../../utils/auth';
+
 
 
 //========================================================================
@@ -68,6 +70,8 @@ function LogInSignUp() {
                 variables: { ...formState },
             });
             console.log('Login successful:', data);
+
+            Auth.login(data.login.token)
         } catch (error) {
             console.error('Error logging in:', error);
         }

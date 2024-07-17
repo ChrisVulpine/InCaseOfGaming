@@ -64,11 +64,11 @@ function Results(props) {
 //========================================================================
 // Function to navigate to the card page -kat  (it breaks the page currently) May need to make  lines 67-106 a separate component
 //========================================================================
-// const navigate = useNavigate(); // Step 2
+const navigate = useNavigate(); // Step 2
 
-// const handleOpenCard = (gameId) => {
-//   navigate(`/game/${gameId}`); // Step 3
-// };
+const handleOpenCard = (gameId) => {
+  navigate(`/game/${gameId}`); // Step 3
+};
 
 //========================================================================
 // Function to create a card for each game -kat
