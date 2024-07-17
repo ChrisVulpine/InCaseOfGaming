@@ -74,7 +74,7 @@ function Home() {
             {/* <Header class="z-20"/> */}
             <Nav style={navIndex}/>
 
-            <Results games={games} style={resultsIndex}/>
+            <Results games={searchResults} style={resultsIndex}/>
 
         {/* <div>Top Games</div>
         <div>sidebar for signedin users:wishlist/favorites</div>
