@@ -84,3 +84,11 @@ function Home() {
 }
 
 export default Home;
+
+
+// extra funtionality to let games become game cards
+// //  <div className="games-container">
+// {searchResults.map((game) => (
+//     <GameCard key={game.name} game={game} /> // Render a GameCard for each game
+//   ))}
+// </div>
