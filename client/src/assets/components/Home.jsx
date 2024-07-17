@@ -9,7 +9,8 @@ import fetchGameDetails from '../../utils/gameDataFetch';
 function Home() {
 
 //    function to fetch game details
-    const [searchQuery , setSearchQuery] = useState('');
+    const [searchQuery, setSearchQuery] = useState('');
+    const [searchResults , setSearchResults] = useState([]);
 
     const handleSearchSubmit = async (e) => {
         e.preventDefault();
