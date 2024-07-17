@@ -105,6 +105,27 @@ function Results(props) {
       );
     });
 
+    // ========================================================================
+    // possible simplified version of the above function
+    // ========================================================================
+
+
+  //   function Results({ games }) {
+  //     return (
+  //         <div className="cards-container">
+  //             {games.map((game, index) => (
+  //                 <article key={index} className="game-card">
+  //                     <div style={{ backgroundImage: `url(${game.img})` }}>
+  //                         <h1>{game.name}</h1>
+  //                         {/* <p>{game.description}</p> */}
+  //                         {/* Buttons for actions like Favorite/Wishlist */}
+  //                     </div>
+  //                 </article>
+  //             ))}
+  //         </div>
+  //     );
+  // }
+
 
 
 
