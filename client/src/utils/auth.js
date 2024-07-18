@@ -31,16 +31,16 @@ class AuthService {
 }
     
     getToken() {
-        return localStorage.getItem('id_token'); //authToken
+        return localStorage.getItem('token_id'); //authToken
     }
 
     login(idToken) {
-        localStorage.setItem('id_token', idToken);
+        localStorage.setItem('token_id', idToken);
         window.location.assign('/');
     }
 
     logout() {  
-        localStorage.removeItem('id_token');
+        localStorage.removeItem('token_id');
         window.location.assign('/');
     }
 }

@@ -1,10 +1,12 @@
 const {Schema, model} = require('mongoose');
 
 const wishlistSchema = new Schema({
+    user: {
+        type: Schema.Types.ObjectId,
+    },
     games: [
         {
-            type: Schema.Types.ObjectId,
-            ref: 'games',
+            type: String,
         },
     ],
 });

@@ -77,7 +77,7 @@ function LogInSignUp() {
             // const data = { token, userId}
 
         // Store the token in localStorage or another storage mechanism
-        localStorage.setItem('authToken', token);
+        localStorage.setItem('token_id', token);
         localStorage.setItem('userId', userId);
 
         console.log('Token stored:', token)
@@ -116,7 +116,7 @@ function LogInSignUp() {
             console.log('Signup successful:', data);
             const token = data.addUser.token; // Get the auth token
             const userId = data.addUser.user._id; // Get the user ID
-            localStorage.setItem('authToken', token);
+            localStorage.setItem('token_id', token);
             localStorage.setItem('userId', userId);
             navigate('/'); // Redirect to home page after login
         } catch (error) {

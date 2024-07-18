@@ -17,16 +17,16 @@ function Results(props) {
   const [addWishlist] = useMutation(ADD_WISHLIST);
 
   // Function to get userId from localStorage
-  const getUserId = () => localStorage.getItem('userId');
-  console.log('userId:', getUserId());
+  const userId =  localStorage.getItem('userId');
+  console.log('userId results:', userId);
 
 
 console.log('props:', props);
   
   // Add to Favorites Function
   const handleFavoriteClick = async (game) => {
-    const userId = getUserId();
-    
+    // const userId = getUserId();
+    const token = localStorage.getItem('token_id');
     
     if(!userId) {
       alert('Please log in to add games to your favorites!');
@@ -44,7 +44,7 @@ console.log('props:', props);
 
       const { data } = await addLikedGames({
         // variables: { userId, gameIds: [game.id] }, 
-        variables: { userId, game: game }, 
+        variables: { userId, token, game: game }, 
       });
 
       console.log('Game added to favorites:', data);
@@ -63,7 +63,7 @@ console.log('props:', props);
 
    // Add to Wishlist Function
   const handleAddToWishlist = async (game) => {
-    const userId = getUserId();
+    const token = localStorage.getItem('token_id');
 
     if (!userId) {
       alert('You must be logged in to add a game to your wishlist');
@@ -72,11 +72,16 @@ console.log('props:', props);
 
     try {
       const { data } = await addWishlist({
-        variables: { userId, game: game }, 
+        variables: { userId, gameId: game.id }, 
       });
-      console.log('Game added to wishlist:', data);
+      console.log('data for checking',data);
+      // console.log('Game added to wishlist:', data);
+      // alert(`${game.name} has been added to your wishlist!`);
     } catch (error) {
-      console.error('Error adding game to wishlist:', error);
+      // console.error('Error adding game to wishlist:', error);
+      // if (error.graphQLErrors) error.graphQLErrors.forEach(({message}) => console.error(message));
+      // if(error.networkError) console.error(error.networkError.message);
+      // console.error(error);
     }
   };
 
