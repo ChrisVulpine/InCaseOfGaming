@@ -23,7 +23,8 @@ const typeDefs = `
         name: String!
         description: String!
         price: Float!
-        image: String!
+        img: String!
+        small_cap: String!
         }  
     
     type Auth{
@@ -33,17 +34,17 @@ const typeDefs = `
     
 
     input GameInput{
-        id: ID!
+        id: ID
         name: String!
-        type: String!
-        price: String!
+        type: String
+        price: Float
         img: String!
-        small_cap: String!
+        small_cap: String
     }
     
     type Query{
         users: [User]
-        user(username: String!): User
+        user(id:ID!): User
         wishlist(userId: ID!): Wishlist 
         likedGames(userId: ID!): LikedGames 
         games: [Game]
