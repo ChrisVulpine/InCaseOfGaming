@@ -8,7 +8,7 @@ const { authMiddleware } = require('./utils/auth');
 const { GraphQLError } = require('graphql');
 // const { expressMiddleware } = require('apollo-server-express');
 require('dotenv').config();
-const path = require('path');
+
 
 //const routes = require('./routes');
 
