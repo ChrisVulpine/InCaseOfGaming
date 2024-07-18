@@ -77,7 +77,7 @@ function LogInSignUp() {
             // const data = { token, userId}
 
         // Store the token in localStorage or another storage mechanism
-        localStorage.setItem('authToken', token);
+        localStorage.setItem('token_id', token);
         localStorage.setItem('userId', userId);
 
         console.log('Token stored:', token)
