@@ -65,7 +65,11 @@ Mutation: {
     addGame: async (parent, { name, description, price, image }, context) => {
         if (context.user) {
             const game = await Game.create({ name, description, price, image });
+            console.log(game);
             return game;
+        }
+        else {
+            throw new AuthenticationError('You need to be logged in!');
         }
     },
     addWishlist: async (parent, { userId, gameIds }, context) => {
@@ -78,14 +82,30 @@ Mutation: {
             return wishlist;
         }
     },
-    addLikedGames: async (parent, { userId, gameIds }, context) => {
+    // addLikedGames: async (parent, { userId, gameIds }, context) => {
+    addLikedGames: async (parent, { userId, game }, context) => {
+        console.log(context.user);
+        console.log(userId)
         if (context.user && context.user._id === userId) {
-            const likedGames = await LikedGames.findOneAndUpdate(
-                { user: userId },
-                { $addToSet: { games: { $each: gameIds } } },
-                { new: true, upsert: true }
-            ).populate('game');
-            return likedGames;
+            // const likedGames = await LikedGames.findOneAndUpdate(
+            //     { user: userId },
+            //     { $addToSet: { games: { $each: gameIds } } },
+            //     { new: true, upsert: true }
+            // ).populate('game')
+            
+            const user = await User.findOneAndUpdate(
+                {
+                    _id: userId,
+                },
+                {
+                    $addToSet: { likedGames: game },
+                },
+                { new: true }
+            )
+            console.log(user)
+            return user;
+        }else {
+            console.log("no liked games");
         }
     },
     deleteGame: async (parent, { _id, name }, context) => {

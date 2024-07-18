@@ -1,6 +1,7 @@
 const {Schema , model} = require('mongoose');
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
+const gameSchema = require('./GameSchema');
 
 const userSchema = new mongoose.Schema({ 
     username: {
@@ -19,18 +20,19 @@ const userSchema = new mongoose.Schema({
         unique: true,
         match: [/.+@.+\..+/, 'Please enter a valid e-mail address'],
     },
-    wishlist: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Game',
-        },
-    ],
-    likedGames: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Game',
-        },
-    ],
+    // wishlist: [
+    //     {
+    //         type: Schema.Types.ObjectId,
+    //         ref: 'Game',
+    //     },
+    // ],
+    // likedGames: [
+    //     {
+    //         type: Schema.Types.ObjectId,
+    //         ref: 'Game',
+    //     },
+    // ],
+    likedGames: [gameSchema]
 });
 
 userSchema.pre('save', async function(next) {
