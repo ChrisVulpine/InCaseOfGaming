@@ -1,14 +1,27 @@
-// add to the homepage
 
+import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import Logo from './../images/InCaseOfGaming.png';
-import { useState } from 'react';
+
 // add to the homepage
 
 
 
 function NavSideBar() {
-  
+    // useEffect for displaying the wishlist and favorites only if the user is logged in
+  const [showWishlistAndFavorites, setShowWishlistAndFavorites] = useState('');
+
+    useEffect(() => {
+        const token = localStorage.getItem('id_token'); // Get the token
+        const userId = localStorage.getItem('userId'); // Get the user ID
+        if(token || userId) {
+            setShowWishlistAndFavorites(true);
+        }
+        else{
+            setShowWishlistAndFavorites(false);
+        }
+    }, []);
+
 
     const headerIndex = {
         zIndex:0
@@ -48,32 +61,26 @@ function NavSideBar() {
                             {/*can insert small icon here*/}
                             <span className="ml-2 text-sm md:text-lg lg:text-xl font-medium">Search</span>
                         </NavLink>
-                        <NavLink to="/LikedGames" className={({ isActive }) => isActive ? 'active flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300' : 'flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300'}>
-                            {/*can insert small icon here*/}
-                            <span className="ml-2 text-sm md:text-lg lg:text-xl font-medium">Favorites</span>
-                        </NavLink>
-                        <NavLink to="/Wishlist" className={({ isActive }) => isActive ? 'active flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300' : 'flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300'}>
-                            {/*can insert small icon here*/}
-                            <span className="ml-2 text-sm md:text-lg lg:text-xl font-medium">Wishlist</span>
-                        </NavLink>
+                        {showWishlistAndFavorites && (
+                            <div className="flex flex-col items-center w-full mt-3 border-b border-gray-700" >
+                                <NavLink to="/LikedGames" className={({ isActive }) => isActive ? 'active flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300' : 'flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300'}>
+                                    {/*can insert small icon here*/}
+                                    <span className="ml-2 text-sm md:text-lg lg:text-xl font-medium">Favorites</span>
+                                </NavLink>
+                                <NavLink to="/Wishlist" className={({ isActive }) => isActive ? 'active flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300' : 'flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300'}>
+                                    {/*can insert small icon here*/}
+                                    <span className="ml-2 text-sm md:text-lg lg:text-xl font-medium">Wishlist</span>
+                                </NavLink>
+                            </div>
+                        )}
 
                     </div>
                 </div>
-                <a className="flex items-center w-full h-12 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
-
-                    {/* below is a portfolio icon*/}
-                    {/* <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg> */}
-                    <span className="ml-2 md:text-md  lg:text-xl font-medium">Account</span>
-                </a>
             </div>
         </div>
-    )
+    );
 }
 
 export default NavSideBar;
 
-{/* <a class="flex items-center w-full h-12 px-3 mt-2 py-0 md:py-10 text-gray-200 bg-gray-700 rounded" href="#"> */}
+
