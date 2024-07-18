@@ -99,9 +99,11 @@ function LogInSignUp() {
 //========================================================================
 
     const handleSignup = async (event) => {
-        console.log("handleSignup called");
         
         event.preventDefault();
+        console.log(formState);
+        console.log("handleSignup called");
+        
 
         if (!validateForm()) return;  //if validateForm test fails
         console.log('Signing up with:', formState);
@@ -112,15 +114,16 @@ function LogInSignUp() {
                 variables: { ...formState },
             });
             console.log('Signup successful:', data);
+            const token = data.addUser.token; // Get the auth token
+            const userId = data.addUser.user._id; // Get the user ID
+            localStorage.setItem('authToken', token);
+            localStorage.setItem('userId', userId);
             navigate('/'); // Redirect to home page after login
         } catch (error) {
             console.error('Error signing up:', error);
         }
     };
 
-//     const data = await response.json();
-//     console.log('Response from server:', data);
-// };
         
 //========================================================================
 
