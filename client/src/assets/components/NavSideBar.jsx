@@ -40,8 +40,8 @@ function NavSideBar() {
                         <h1 className="font-bold mb-4 text-white neon-text glitch hover-3d" data-text="In Case Of Gaming">In Case Of Gaming</h1>
                     </div>
                 </div>
-                <div className="col-start-4 self-center text-xs md:text-3xl rounded-md border border-transparent bg-indigo-600 px-4 py-2 font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                    <NavLink to="/login">Log In
+                <div className="col-start-4 text-center self-center text-xs md:text-3xl rounded-md border border-transparent bg-indigo-600 px-4 py-2 font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    <NavLink to="/login" >Log In
                     </NavLink>
 
                 </div>
