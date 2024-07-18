@@ -1,5 +1,5 @@
 const express = require('express');
-// const path = require('path');
+const path = require('path');
 const cors = require('cors');
 const { ApolloServer } = require('apollo-server-express');
 const db = require('./config/connection');
@@ -22,23 +22,12 @@ app.use(cors());
 const server = new ApolloServer({ //This layout works!!!
   typeDefs, 
   resolvers,
-  context: ({ req}) => {
-    // console.log('req object:', req);
-    // return {};
-    // try{
-    // expressMiddleware({ app, path: `/graphql` });
-  // const auth = authMiddleware(req);
-  // return { auth };
-    // } catch (err) {
-    //   console.error('Context creation failed:', err);
-    //   throw new GraphQLError('Context creation failed:', {
-    //     extensions: {
-    //       code: 'CONTEXT_CREATION_FAILED',
-    //     exception: err,
-    //     },
-    //   });
-    //  },
-},
+  context: authMiddleware,
+  // context: ({req}) => {
+  //   let token = req.body.token || req.query.token || req.headers.authorization;
+  //   console.log(token);
+  //   console.log("Hello!")
+  // },
   introspection: true, //process.env.NODE_ENV === 'development',
   playground: true,
   });

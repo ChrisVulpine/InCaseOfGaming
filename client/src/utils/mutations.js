@@ -51,17 +51,25 @@ mutation addWishlist($userId: ID!, $gameIds: [ID!]!) {
 }
 `;
 
+// export const ADD_LIKED_GAMES = gql`
+// mutation addLikedGames($userId: ID!, $gameIds: [ID!]!) {
+//   addLikedGames(userId: $userId, gameIds: $gameIds) {
+//     _id
+//     games {
+//       _id
+//       name
+//       description
+//       price
+//       image
+//     }
+//   }
+// }
+// `;
 export const ADD_LIKED_GAMES = gql`
-mutation addLikedGames($userId: ID!, $gameIds: [ID!]!) {
-  addLikedGames(userId: $userId, gameIds: $gameIds) {
+mutation addLikedGames($userId: ID!, $game: GameInput!) {
+  addLikedGames(userId: $userId, game: $game) {
     _id
-    games {
-      _id
-      name
-      description
-      price
-      image
-    }
+    username
   }
 }
 `;

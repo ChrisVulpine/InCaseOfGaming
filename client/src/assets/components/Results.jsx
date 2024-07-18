@@ -32,10 +32,6 @@ function Results(props) {
       return;
     }
     
-    props.games.forEach((game, index) => {
-      console.log(`Opening card ${index} for game ${game._id}`, 'Game Name:', game.name);
-      
-    });
 
     // console.log('userId:', userId); 
     // console.log('gameId:', game.id); 
@@ -46,7 +42,8 @@ function Results(props) {
       // console.log('gameIds 1:', gameId);
 
       const { data } = await addLikedGames({
-        variables: { userId, gameIds: [game._id] }, 
+        // variables: { userId, gameIds: [game.id] }, 
+        variables: { userId, game: game }, 
       });
 
       console.log('Game added to favorites:', data);
@@ -118,7 +115,7 @@ const handleOpenCard = (game) => {
                     </button>
                   </div>
                   <div>
-                    <button onClick={() => handleFavoriteClick(game, index)} className="language-tag html-tag"><i className="fa-sharp-duotone fa-solid fa-fire"></i>
+                    <button onClick={() => handleFavoriteClick(game)} className="language-tag html-tag"><i className="fa-sharp-duotone fa-solid fa-fire"></i>
                       Favorite
                     </button>
                     <button  onClick={() => handleAddToWishlist(game, index)} className="language-tag css-tag"><i className="fa-sharp-duotone fa-solid fa-bookmark"></i>
