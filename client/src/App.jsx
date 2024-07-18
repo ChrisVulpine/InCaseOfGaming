@@ -7,7 +7,7 @@ import React from 'react';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3001/graphql',
+  uri: 'http://localhost:3000/graphql',
   // uri: 'http://localhost:3000/graphql',
 });
 

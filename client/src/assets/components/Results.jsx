@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+// import React, { useEffect, useState } from 'react';
+// import PropTypes from 'prop-types'; // Add this line
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_LIKED_GAMES, ADD_WISHLIST } from '../../utils/mutations';
@@ -20,7 +21,7 @@ function Results(props) {
   console.log('userId:', getUserId());
 
 
-
+console.log('props:', props);
   
   // Add to Favorites Function
   const handleFavoriteClick = async (game) => {
@@ -194,5 +195,9 @@ const handleOpenCard = (game) => {
     </div>
   );
 }
+// Results.propTypes = {
+//   games: PropTypes.array.isRequired, // Add this line
+// };
 
 export default Results;
+// export default Results;
