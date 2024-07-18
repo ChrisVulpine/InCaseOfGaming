@@ -62,7 +62,7 @@ function Results(props) {
 
    // Add to Wishlist Function
   const handleAddToWishlist = async (game) => {
-    const userId = localStorage.getItem('userId');
+    const userId = getUserId();
 
     if (!userId) {
       alert('You must be logged in to add a game to your wishlist');
@@ -71,7 +71,7 @@ function Results(props) {
 
     try {
       const { data } = await addWishlist({
-        variables: { userId, gameIds: [game._id] },
+        variables: { userId, game: game }, 
       });
       console.log('Game added to wishlist:', data);
     } catch (error) {
@@ -118,7 +118,7 @@ const handleOpenCard = (game) => {
                     <button onClick={() => handleFavoriteClick(game)} className="language-tag html-tag"><i className="fa-sharp-duotone fa-solid fa-fire"></i>
                       Favorite
                     </button>
-                    <button  onClick={() => handleAddToWishlist(game, index)} className="language-tag css-tag"><i className="fa-sharp-duotone fa-solid fa-bookmark"></i>
+                    <button  onClick={() => handleAddToWishlist(game)} className="language-tag css-tag"><i className="fa-sharp-duotone fa-solid fa-bookmark"></i>
                       Wishlist
                     </button>
                   </div>
