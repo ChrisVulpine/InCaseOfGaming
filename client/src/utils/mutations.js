@@ -52,10 +52,10 @@ mutation addGame($name: String!, $description: String!, $price: Float!, $image: 
 // `;
 
 export const ADD_WISHLIST = gql`
-mutation addWishlist($userId: ID!, $game: GameInput!) {
-  addWishlist(userId: $userId, game: $game) {
+mutation addWishlist($userId: ID!, $gameId: String!) {
+  addWishlist(userId: $userId, gameId: $gameId) {
     _id
-    username
+    games
   }
 }
 `;
@@ -77,7 +77,6 @@ export const ADD_LIKED_GAMES = gql`
 mutation addLikedGames($userId: ID!, $game: GameInput!) {
   addLikedGames(userId: $userId, game: $game) {
     _id
-    username
   }
 }
 `;

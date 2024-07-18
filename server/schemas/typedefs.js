@@ -9,9 +9,9 @@ const typeDefs = `
     }
     
     type Wishlist{
-      _id: ID!
-      games: [Game!]
-      }
+      _id: ID
+      games: [String]
+    }
 
     type LikedGames{
       _id: ID!
@@ -56,7 +56,7 @@ const typeDefs = `
         login(email: String!, password: String!): Auth
         logout: Auth
         addGame(name: String!, description: String!, price: Float!, image: String!): Game 
-        addWishlist(userId: ID!, gameInput: GameInput!): Wishlist
+        addWishlist(userId: ID!, gameId: String!): Wishlist
         addLikedGames(userId: ID!, gameIds:[ID!]! ): LikedGames
         deleteGame(_id: ID!, name: String!): Game
         }

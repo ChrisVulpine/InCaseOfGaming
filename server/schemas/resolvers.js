@@ -1,5 +1,6 @@
 
 const { User, Game, Wishlist, LikedGames } = require('../models');
+const { get } = require('../models/GameSchema');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
@@ -64,7 +65,7 @@ Mutation: {
     },
     addGame: async (parent, { name, description, price, image }, context) => {
         if (context.user) {
-            const game = await Game.create({ name, description, price, image });
+            const game = await Game.create({ name, description, price, img, small_cap });
             console.log(game);
             return game;
         }
@@ -72,21 +73,81 @@ Mutation: {
             throw new AuthenticationError('You need to be logged in!');
         }
     },
-    addWishlist: async (parent, { userId, game }, context) => {
-        if (context.user && context.user._id === userId) {
-            const user = await User.findOneAndUpdate(
+    addWishlist: async (parent, props, context) =>
+    {
+        let wishlist = null;
+
+        try {
+            wishlist = await Wishlist.findOneAndUpdate(
                 {
-                    _id: userId,
+                    user: context.user._id,
                 }, 
                 {
-                    $addToSet: { wishlist: game },
+                    $addToSet: { games: props.gameId },
                 },
-                { new: true }
-            )
-            return user;
-        } else {
-            console.log("no wishlist");
-        }
+                { new: true, upsert: true }
+            );
+        } catch(err) {}
+
+        return wishlist;
+
+
+
+
+            // const wishlist = await Wishlist.findOneAndUpdate(
+            //     {
+            //         user: getUserId(),
+            //     }, 
+            //     {
+            //         $addToSet: { games: game._id },
+            //     },
+            //     { new: true, upsert: true }
+            // ).populate('games');        //     const wishlist = await Wishlist.findOneAndUpdate(
+            //     {
+            //         user: getUserId(),
+            //     }, 
+            //     {
+            //         $addToSet: { games: game._id },
+            //     },
+            //     { new: true, upsert: true }
+            // ).populate('games');
+
+
+
+
+        return [];
+
+        //{ userId, gameInput }
+
+
+        // if (context.user && context.user._id === userId) {
+        //     let game = await Game.findOne({ _id: gameInput.id });
+        //     if (!game) {
+        //         game = new Game({
+        //             _id: gameInput.id,
+        //             name: gameInput.name,
+        //             description: gameInput.description || '',
+        //             price: gameInput.price || 0,
+        //             img: gameInput.img,
+        //             small_cap: gameInput.small_cap || '',
+        //         });
+        //         await game.save();
+        //     }
+        //     const wishlist = await Wishlist.findOneAndUpdate(
+        //         {
+        //             user: getUserId(),
+        //         }, 
+        //         {
+        //             $addToSet: { games: game._id },
+        //         },
+        //         { new: true, upsert: true }
+        //     ).populate('games');
+        //     return wishlist;
+        // } else {
+        //     console.log("no wishlist");
+        // }
+
+
     },
     // addLikedGames: async (parent, { userId, gameIds }, context) => {
     addLikedGames: async (parent, { userId, game }, context) => {

@@ -84,44 +84,44 @@ query games {
 }
 `;
 
-export const QUERY_USERS = gql`
-query users {
-  users {
-    _id
-    username
-    email
-  }
-}
-`;
+// export const QUERY_USERS = gql`
+// query users {
+//   users {
+//     _id
+//     username
+//     email
+//   }
+// }
+// `;
 
-export const QUERY_ME = gql`
-query me {
-  me {
-    _id
-    username
-    email
-    wishlist {
-      _id
-      games {
-        _id
-        name
-        description
-        price
-        image
-      }
-    }
-    likedGames {
-      _id
-      games {
-        _id
-        name
-        description
-        price
-        image
-      }
-    }
-  }
-}
-`;
+// export const QUERY_ME = gql`
+// query me {
+//   me {
+//     _id
+//     username
+//     email
+//     wishlist {
+//       _id
+//       games {
+//         _id
+//         name
+//         description
+//         price
+//         image
+//       }
+//     }
+//     likedGames {
+//       _id
+//       games {
+//         _id
+//         name
+//         description
+//         price
+//         image
+//       }
+//     }
+//   }
+// }
+// `;
 
 
