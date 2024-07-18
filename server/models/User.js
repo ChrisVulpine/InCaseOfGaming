@@ -32,7 +32,8 @@ const userSchema = new mongoose.Schema({
     //         ref: 'Game',
     //     },
     // ],
-    likedGames: [gameSchema]
+    likedGames: [gameSchema],
+    wishlist: [gameSchema]
 });
 
 userSchema.pre('save', async function(next) {

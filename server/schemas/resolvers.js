@@ -72,14 +72,20 @@ Mutation: {
             throw new AuthenticationError('You need to be logged in!');
         }
     },
-    addWishlist: async (parent, { userId, gameIds }, context) => {
+    addWishlist: async (parent, { userId, game }, context) => {
         if (context.user && context.user._id === userId) {
-            const wishlist = await Wishlist.findOneAndUpdate(
-                { user: userId },
-                { $addToSet: { games: { $each: gameIds } } },
-                { new: true, upsert: true }
-            ).populate('games');
-            return wishlist;
+            const user = await User.findOneAndUpdate(
+                {
+                    _id: userId,
+                }, 
+                {
+                    $addToSet: { wishlist: game },
+                },
+                { new: true }
+            )
+            return user;
+        } else {
+            console.log("no wishlist");
         }
     },
     // addLikedGames: async (parent, { userId, gameIds }, context) => {
