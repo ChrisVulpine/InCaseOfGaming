@@ -64,8 +64,8 @@ function NavSideBar() {
                         {showWishlistAndFavorites && (
                             <div className="flex flex-col items-center w-full mt-3 border-b border-gray-700" >
                                 <NavLink to="/LikedGames" className={({ isActive }) => isActive ? 'active flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300' : 'flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300'}>
-                                    {/*can insert small icon here*/}
-                                    <span className="ml-2 text-sm md:text-lg lg:text-xl font-medium">Favorites</span>
+                                {/*can insert small icon here*/}
+                                <span className="ml-2 text-sm md:text-lg lg:text-xl font-medium">Favorites</span>
                                 </NavLink>
                                 <NavLink to="/Wishlist" className={({ isActive }) => isActive ? 'active flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300' : 'flex items-center w-full h-32 px-3 mt-2 py-0 md:py-10 rounded hover:bg-gray-700 hover:text-gray-300'}>
                                     {/*can insert small icon here*/}
