@@ -55,10 +55,8 @@ const typeDefs = `
         login(email: String!, password: String!): Auth
         logout: Auth
         addGame(name: String!, description: String!, price: Float!, image: String!): Game 
-        # addWishlist(userId: ID!, gameIds: [ID!]!): Wishlist
-        # addLikedGames(userId: ID!, gameIds:[ID!]! ): LikedGames
-        addWishlist(userId: ID!, game: GameInput ): User
-        addLikedGames(userId: ID!, game: GameInput ): User
+        addWishlist(userId: ID!, gameInput: GameInput!): Wishlist
+        addLikedGames(userId: ID!, gameIds:[ID!]! ): LikedGames
         deleteGame(_id: ID!, name: String!): Game
         }
         
