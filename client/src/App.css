@@ -1,6 +1,78 @@
 /* styling for GamePage*/
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap');
 
+.banner{
+  position: relative;
+  min-height: 200px;
+  max-width: 100%;
+  z-index: 1;
+}
+
+.cautionTape {
+  background-color: yellow;
+  color: black;
+  font-size: 3em;
+  text-align: center;
+  white-space: nowrap;
+  width: 110%;
+  white-space: pre;
+  z-index: 1;
+
+}
+
+.cautionTape:hover {
+  background-color: rgb(207, 53, 6);
+  color: white;
+  transition: all .35s ease;
+  -webkit-transition: all .35s ease;
+}
+
+#caution {
+  /* display:block; */
+  position: absolute;
+  top: 100%;
+  rotate: 22deg;
+  margin-left: -70px;
+  width: 150%;
+}
+
+#wip {
+  /* display: block; */
+  position: absolute;
+  top: 30%;
+  rotate: -10deg;
+  margin-left: -40px;
+  width: 150%;
+}
+
+@media screen and (max-width: 650px) {
+  .banner {
+      min-height: 100px;
+  }
+  .cautionTape {
+      font-size: 8vw;
+  }
+}
+
+.zoom-in {
+  animation: zoom-in 1s ease ;
+}
+
+@keyframes zoom-in {
+  0% {
+    transform: scale(1.5, 1.5);
+    z-index: 6;
+  }
+  96%{
+      z-index: 6;
+  }
+
+  100% {
+    transform: scale(1, 1);
+    z-index: 1;
+  }
+}
+
 body {
     background-color: #0F172A;
 }
