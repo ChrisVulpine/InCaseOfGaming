@@ -7,22 +7,22 @@ const resolvers = {
         users: async () => {
             return User.find().populate('wishlist').populate('likedGames');
         },
-        user: async (parent, { username }) => {
-            return User.findOne({ username }).populate('wishlist').populate('likedGames');
-        },
+        user: async (parent, { userId }) => {
+            // Assuming `userId` is the field to match in the database
+            return User.findById(userId)
+                },
+
+
         wishlist: async (parent, { userId }) => {
-            return Wishlist.findOne({user: userId}).populate('games');
+            return Wishlist.findOne({user: userId}).populate('game');
         },
-        likedGames: async (parent, { userId }) => {
+        likedGames: async () => {
             // const params = username ? { username } : {};
-            return LikedGames.findOne({user: userId}).populate('games');
+            return LikedGames;
         },
-        games: async () => {
-            // const params = username ? { username } : {};
-            return Game.find();
-        },
-        game: async (parent, {name}) => {
-            return Game.findOne({name});
+
+        game: async (parent, {}) => {
+            return Game.findOne;
         },
     //     me: async (parent, args, context) => {
     //         if (context.user) {
@@ -62,9 +62,9 @@ Mutation: {
         }
         throw new AuthenticationError('You need to be logged in!');
     },
-    addGame: async (parent, { name, description, price, image }, context) => {
+    addGame: async (parent, { name, type, price, img, small_cap }, context) => {
         if (context.user) {
-            const game = await Game.create({ name, description, price, image });
+            const game = await Game.create({ name, type, price, img, small_cap });
             console.log(game);
             return game;
         }

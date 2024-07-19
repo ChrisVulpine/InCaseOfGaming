@@ -10,20 +10,21 @@ const typeDefs = `
     
     type Wishlist{
       _id: ID!
-      games: [Game!]
+      game: [Game!]
       }
 
     type LikedGames{
       _id: ID!
-      games: [Game!]
+      game: [Game!]
       }  
 
     type Game{
         _id: ID!
         name: String!
-        description: String!
-        price: Float!
-        image: String!
+        type: String!
+        price: String!
+        img: String!
+        small_cap: String!
         }  
     
     type Auth{
@@ -43,7 +44,7 @@ const typeDefs = `
     
     type Query{
         users: [User]
-        user(username: String!): User
+        user(userId: String!): User
         wishlist(userId: ID!): Wishlist 
         likedGames(userId: ID!): LikedGames 
         games: [Game]
@@ -54,7 +55,7 @@ const typeDefs = `
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
         logout: Auth
-        addGame(name: String!, description: String!, price: Float!, image: String!): Game 
+        addGame(name: String!, type: String!, price: String!, img: String!, small_cap: String!): Game 
         # addWishlist(userId: ID!, gameIds: [ID!]!): Wishlist
         # addLikedGames(userId: ID!, gameIds:[ID!]! ): LikedGames
         addWishlist(userId: ID!, game: GameInput ): User

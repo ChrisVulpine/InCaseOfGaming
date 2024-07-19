@@ -1,29 +1,29 @@
 import {gql} from '@apollo/client';
 
 export const QUERY_USER = gql`
-query user($username: String!) {
-  user(username: $username) {
+query user($userId: String!) {
+  user(userId: $userId) {
     _id
     username
     email
     wishlist {
-      _id
-      games {
+      game {
         _id
         name
-        description
+        type
         price
-        image
+        img
+        small_cap
       }
     }
     likedGames {
-      _id
-      games {
+      game {
         _id
         name
-        description
+        type
         price
-        image
+        img
+        small_cap
       }
     }
   }
@@ -37,9 +37,10 @@ query wishlist($userId: ID!) {
     games {
       _id
       name
-      description
+      type
       price
-      image
+      img
+      small_cap
     }
   }
 }
@@ -48,26 +49,27 @@ query wishlist($userId: ID!) {
 export const QUERY_LIKED_GAMES = gql`
 query likedGames($userId: ID!) {
   likedGames(userId: $userId) {
-    _id
     games {
       _id
       name
-      description
+      type
       price
-      image
+      img
+      small_cap
     }
   }
 }
 `;
 
 export const QUERY_GAME = gql`
-query game($name: String!) {
-  game(name: $name) {
+query gameInput($id: String!) {
+  gameInput(id: $id) {
     _id
     name
-    description
+    type
     price
-    image
+    img
+    small_cap
   }
 }
 `;
@@ -77,9 +79,10 @@ query games {
   games {
     _id
     name
-    description
+    type
     price
-    image
+    img
+    small_cap
   }
 }
 `;
@@ -102,22 +105,24 @@ query me {
     email
     wishlist {
       _id
-      games {
+      game {
         _id
         name
-        description
+        type
         price
-        image
+        img
+        small_cap
       }
     }
     likedGames {
       _id
-      games {
+      game {
         _id
         name
-        description
+        type
         price
-        image
+        img
+        small_cap
       }
     }
   }

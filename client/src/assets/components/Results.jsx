@@ -96,6 +96,8 @@ const handleOpenCard = (game) => {
   navigate(`/game/${game.id}`, { state: { gameDetails: game } });
 };
 
+
+
 //========================================================================
 // Function to create a card for each game -kat
 //========================================================================

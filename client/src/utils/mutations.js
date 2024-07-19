@@ -25,13 +25,14 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_GAME = gql`
-mutation addGame($name: String!, $description: String!, $price: Float!, $image: String!) {
-  addGame(name: $name, description: $description, price: $price, image: $image) {
+mutation addGame($name: String!, $type: String!, $price: String!, $img: String!, $small_cap: String!) {
+  addGame(name: $name, type: $type, price: $price, img: $img, small_cap: $small_cap) {
     _id
     name
-    description
+    type
     price
-    image
+    img
+    small_cap
   }
 }
 `;
@@ -87,9 +88,10 @@ mutation deleteGame($_id: ID!, $name: String!) {
   deleteGame(_id: $_id, name: $name) {
     _id
     name
-    description
+    type
     price
-    image
+    img
+    small_cap
   }
 }
 `;
