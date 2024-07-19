@@ -13,8 +13,9 @@ function NavSideBar() {
 
     useEffect(() => {
         const token = localStorage.getItem('token_id'); // Get the token
-        const userId = localStorage.getItem('userId'); // Get the user ID
-        if(token || userId) {
+
+        // const userId = localStorage.getItem('userId'); // Get the user ID
+        if(token) {
             setShowWishlistAndFavorites(true);
         }
         else{

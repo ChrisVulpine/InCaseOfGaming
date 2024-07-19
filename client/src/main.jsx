@@ -8,6 +8,7 @@ import Home from './assets/components/Home';
 import Wishlist from './assets/components/Wishlist';
 import LikedGames from './assets/components/LikedGames';
 import GamePage from './assets/components/GamePage';
+import WorkInProgress from './assets/components/WorkInProgress';
 
 
 
@@ -27,11 +28,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/wishlist",
-        element: <Wishlist />
+        element: <WorkInProgress />
       },
       {
         path: "/likedGames",
-        element: <LikedGames />
+        element: <WorkInProgress />
       },
       {
         path: "/game/:id", //change to path: "/game/:GameId", when ready
