@@ -9,9 +9,9 @@ const typeDefs = `
     }
     
     type Wishlist{
-      _id: ID!
-      games: [Game!]
-      }
+      _id: ID
+      games: [String]
+    }
 
     type LikedGames{
       _id: ID!
@@ -23,7 +23,8 @@ const typeDefs = `
         name: String!
         description: String!
         price: Float!
-        image: String!
+        img: String!
+        small_cap: String!
         }  
     
     type Auth{
@@ -33,17 +34,17 @@ const typeDefs = `
     
 
     input GameInput{
-        id: ID!
+        id: ID
         name: String!
-        type: String!
-        price: String!
+        type: String
+        price: Float
         img: String!
-        small_cap: String!
+        small_cap: String
     }
     
     type Query{
         users: [User]
-        user(username: String!): User
+        user(id:ID!): User
         wishlist(userId: ID!): Wishlist 
         likedGames(userId: ID!): LikedGames 
         games: [Game]
@@ -55,10 +56,8 @@ const typeDefs = `
         login(email: String!, password: String!): Auth
         logout: Auth
         addGame(name: String!, description: String!, price: Float!, image: String!): Game 
-        # addWishlist(userId: ID!, gameIds: [ID!]!): Wishlist
-        # addLikedGames(userId: ID!, gameIds:[ID!]! ): LikedGames
-        addWishlist(userId: ID!, game: GameInput ): User
-        addLikedGames(userId: ID!, game: GameInput ): User
+        addWishlist(userId: ID!, gameId: String!): Wishlist
+        addLikedGames(userId: ID!, gameIds:[ID!]! ): LikedGames
         deleteGame(_id: ID!, name: String!): Game
         }
         
